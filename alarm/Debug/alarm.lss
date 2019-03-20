@@ -1,0 +1,2441 @@
+
+alarm.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000ef4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000b0  00800060  00000ef4  00000f88  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000002d  00800110  00800110  00001038  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00001038  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001068  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000b0  00000000  00000000  000010a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00002276  00000000  00000000  00001158  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000783  00000000  00000000  000033ce  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001079  00000000  00000000  00003b51  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000018c  00000000  00000000  00004bcc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000009fb  00000000  00000000  00004d58  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000dfc  00000000  00000000  00005753  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a8  00000000  00000000  0000654f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	14 c0       	rjmp	.+40     	; 0x2a <__ctors_end>
+   2:	2e c0       	rjmp	.+92     	; 0x60 <__bad_interrupt>
+   4:	2d c0       	rjmp	.+90     	; 0x60 <__bad_interrupt>
+   6:	2c c0       	rjmp	.+88     	; 0x60 <__bad_interrupt>
+   8:	18 c1       	rjmp	.+560    	; 0x23a <__vector_4>
+   a:	2a c0       	rjmp	.+84     	; 0x60 <__bad_interrupt>
+   c:	29 c0       	rjmp	.+82     	; 0x60 <__bad_interrupt>
+   e:	28 c0       	rjmp	.+80     	; 0x60 <__bad_interrupt>
+  10:	27 c0       	rjmp	.+78     	; 0x60 <__bad_interrupt>
+  12:	26 c0       	rjmp	.+76     	; 0x60 <__bad_interrupt>
+  14:	25 c0       	rjmp	.+74     	; 0x60 <__bad_interrupt>
+  16:	24 c0       	rjmp	.+72     	; 0x60 <__bad_interrupt>
+  18:	23 c0       	rjmp	.+70     	; 0x60 <__bad_interrupt>
+  1a:	22 c0       	rjmp	.+68     	; 0x60 <__bad_interrupt>
+  1c:	21 c0       	rjmp	.+66     	; 0x60 <__bad_interrupt>
+  1e:	20 c0       	rjmp	.+64     	; 0x60 <__bad_interrupt>
+  20:	1f c0       	rjmp	.+62     	; 0x60 <__bad_interrupt>
+  22:	1e c0       	rjmp	.+60     	; 0x60 <__bad_interrupt>
+  24:	1d c0       	rjmp	.+58     	; 0x60 <__bad_interrupt>
+  26:	1c c0       	rjmp	.+56     	; 0x60 <__bad_interrupt>
+  28:	1b c0       	rjmp	.+54     	; 0x60 <__bad_interrupt>
+
+0000002a <__ctors_end>:
+  2a:	11 24       	eor	r1, r1
+  2c:	1f be       	out	0x3f, r1	; 63
+  2e:	cf e5       	ldi	r28, 0x5F	; 95
+  30:	d1 e0       	ldi	r29, 0x01	; 1
+  32:	de bf       	out	0x3e, r29	; 62
+  34:	cd bf       	out	0x3d, r28	; 61
+
+00000036 <__do_copy_data>:
+  36:	11 e0       	ldi	r17, 0x01	; 1
+  38:	a0 e6       	ldi	r26, 0x60	; 96
+  3a:	b0 e0       	ldi	r27, 0x00	; 0
+  3c:	e4 ef       	ldi	r30, 0xF4	; 244
+  3e:	fe e0       	ldi	r31, 0x0E	; 14
+  40:	02 c0       	rjmp	.+4      	; 0x46 <__SREG__+0x7>
+  42:	05 90       	lpm	r0, Z+
+  44:	0d 92       	st	X+, r0
+  46:	a0 31       	cpi	r26, 0x10	; 16
+  48:	b1 07       	cpc	r27, r17
+  4a:	d9 f7       	brne	.-10     	; 0x42 <__SREG__+0x3>
+
+0000004c <__do_clear_bss>:
+  4c:	21 e0       	ldi	r18, 0x01	; 1
+  4e:	a0 e1       	ldi	r26, 0x10	; 16
+  50:	b1 e0       	ldi	r27, 0x01	; 1
+  52:	01 c0       	rjmp	.+2      	; 0x56 <.do_clear_bss_start>
+
+00000054 <.do_clear_bss_loop>:
+  54:	1d 92       	st	X+, r1
+
+00000056 <.do_clear_bss_start>:
+  56:	ad 33       	cpi	r26, 0x3D	; 61
+  58:	b2 07       	cpc	r27, r18
+  5a:	e1 f7       	brne	.-8      	; 0x54 <.do_clear_bss_loop>
+  5c:	51 d3       	rcall	.+1698   	; 0x700 <main>
+  5e:	48 c7       	rjmp	.+3728   	; 0xef0 <_exit>
+
+00000060 <__bad_interrupt>:
+  60:	cf cf       	rjmp	.-98     	; 0x0 <__vectors>
+
+00000062 <lcdCommand>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  62:	e7 ec       	ldi	r30, 0xC7	; 199
+  64:	f0 e0       	ldi	r31, 0x00	; 0
+  66:	31 97       	sbiw	r30, 0x01	; 1
+  68:	f1 f7       	brne	.-4      	; 0x66 <lcdCommand+0x4>
+  6a:	00 c0       	rjmp	.+0      	; 0x6c <lcdCommand+0xa>
+  6c:	00 00       	nop
+  6e:	98 b3       	in	r25, 0x18	; 24
+  70:	9f 70       	andi	r25, 0x0F	; 15
+  72:	28 2f       	mov	r18, r24
+  74:	20 7f       	andi	r18, 0xF0	; 240
+  76:	92 2b       	or	r25, r18
+  78:	98 bb       	out	0x18, r25	; 24
+  7a:	c1 98       	cbi	0x18, 1	; 24
+  7c:	c2 98       	cbi	0x18, 2	; 24
+  7e:	c3 9a       	sbi	0x18, 3	; 24
+  80:	f2 e0       	ldi	r31, 0x02	; 2
+  82:	fa 95       	dec	r31
+  84:	f1 f7       	brne	.-4      	; 0x82 <lcdCommand+0x20>
+  86:	00 c0       	rjmp	.+0      	; 0x88 <lcdCommand+0x26>
+  88:	c3 98       	cbi	0x18, 3	; 24
+  8a:	95 e3       	ldi	r25, 0x35	; 53
+  8c:	9a 95       	dec	r25
+  8e:	f1 f7       	brne	.-4      	; 0x8c <lcdCommand+0x2a>
+  90:	00 00       	nop
+  92:	98 b3       	in	r25, 0x18	; 24
+  94:	9f 70       	andi	r25, 0x0F	; 15
+  96:	82 95       	swap	r24
+  98:	80 7f       	andi	r24, 0xF0	; 240
+  9a:	89 2b       	or	r24, r25
+  9c:	88 bb       	out	0x18, r24	; 24
+  9e:	c3 9a       	sbi	0x18, 3	; 24
+  a0:	e2 e0       	ldi	r30, 0x02	; 2
+  a2:	ea 95       	dec	r30
+  a4:	f1 f7       	brne	.-4      	; 0xa2 <lcdCommand+0x40>
+  a6:	00 c0       	rjmp	.+0      	; 0xa8 <lcdCommand+0x46>
+  a8:	c3 98       	cbi	0x18, 3	; 24
+  aa:	08 95       	ret
+
+000000ac <lcdData>:
+  ac:	e7 ec       	ldi	r30, 0xC7	; 199
+  ae:	f0 e0       	ldi	r31, 0x00	; 0
+  b0:	31 97       	sbiw	r30, 0x01	; 1
+  b2:	f1 f7       	brne	.-4      	; 0xb0 <lcdData+0x4>
+  b4:	00 c0       	rjmp	.+0      	; 0xb6 <lcdData+0xa>
+  b6:	00 00       	nop
+  b8:	98 b3       	in	r25, 0x18	; 24
+  ba:	9f 70       	andi	r25, 0x0F	; 15
+  bc:	28 2f       	mov	r18, r24
+  be:	20 7f       	andi	r18, 0xF0	; 240
+  c0:	92 2b       	or	r25, r18
+  c2:	98 bb       	out	0x18, r25	; 24
+  c4:	c1 9a       	sbi	0x18, 1	; 24
+  c6:	c2 98       	cbi	0x18, 2	; 24
+  c8:	c3 9a       	sbi	0x18, 3	; 24
+  ca:	f2 e0       	ldi	r31, 0x02	; 2
+  cc:	fa 95       	dec	r31
+  ce:	f1 f7       	brne	.-4      	; 0xcc <lcdData+0x20>
+  d0:	00 c0       	rjmp	.+0      	; 0xd2 <lcdData+0x26>
+  d2:	c3 98       	cbi	0x18, 3	; 24
+  d4:	95 e3       	ldi	r25, 0x35	; 53
+  d6:	9a 95       	dec	r25
+  d8:	f1 f7       	brne	.-4      	; 0xd6 <lcdData+0x2a>
+  da:	00 00       	nop
+  dc:	98 b3       	in	r25, 0x18	; 24
+  de:	9f 70       	andi	r25, 0x0F	; 15
+  e0:	82 95       	swap	r24
+  e2:	80 7f       	andi	r24, 0xF0	; 240
+  e4:	89 2b       	or	r24, r25
+  e6:	88 bb       	out	0x18, r24	; 24
+  e8:	c3 9a       	sbi	0x18, 3	; 24
+  ea:	e2 e0       	ldi	r30, 0x02	; 2
+  ec:	ea 95       	dec	r30
+  ee:	f1 f7       	brne	.-4      	; 0xec <lcdData+0x40>
+  f0:	00 c0       	rjmp	.+0      	; 0xf2 <lcdData+0x46>
+  f2:	c3 98       	cbi	0x18, 3	; 24
+  f4:	08 95       	ret
+
+000000f6 <lcd_init>:
+  f6:	8f ef       	ldi	r24, 0xFF	; 255
+  f8:	87 bb       	out	0x17, r24	; 23
+  fa:	c3 98       	cbi	0x18, 3	; 24
+  fc:	8f e9       	ldi	r24, 0x9F	; 159
+  fe:	9f e0       	ldi	r25, 0x0F	; 15
+ 100:	01 97       	sbiw	r24, 0x01	; 1
+ 102:	f1 f7       	brne	.-4      	; 0x100 <lcd_init+0xa>
+ 104:	00 c0       	rjmp	.+0      	; 0x106 <lcd_init+0x10>
+ 106:	00 00       	nop
+ 108:	83 e3       	ldi	r24, 0x33	; 51
+ 10a:	ab df       	rcall	.-170    	; 0x62 <lcdCommand>
+ 10c:	87 ec       	ldi	r24, 0xC7	; 199
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	01 97       	sbiw	r24, 0x01	; 1
+ 112:	f1 f7       	brne	.-4      	; 0x110 <lcd_init+0x1a>
+ 114:	00 c0       	rjmp	.+0      	; 0x116 <lcd_init+0x20>
+ 116:	00 00       	nop
+ 118:	82 e3       	ldi	r24, 0x32	; 50
+ 11a:	a3 df       	rcall	.-186    	; 0x62 <lcdCommand>
+ 11c:	87 ec       	ldi	r24, 0xC7	; 199
+ 11e:	90 e0       	ldi	r25, 0x00	; 0
+ 120:	01 97       	sbiw	r24, 0x01	; 1
+ 122:	f1 f7       	brne	.-4      	; 0x120 <lcd_init+0x2a>
+ 124:	00 c0       	rjmp	.+0      	; 0x126 <lcd_init+0x30>
+ 126:	00 00       	nop
+ 128:	88 e2       	ldi	r24, 0x28	; 40
+ 12a:	9b df       	rcall	.-202    	; 0x62 <lcdCommand>
+ 12c:	87 ec       	ldi	r24, 0xC7	; 199
+ 12e:	90 e0       	ldi	r25, 0x00	; 0
+ 130:	01 97       	sbiw	r24, 0x01	; 1
+ 132:	f1 f7       	brne	.-4      	; 0x130 <lcd_init+0x3a>
+ 134:	00 c0       	rjmp	.+0      	; 0x136 <lcd_init+0x40>
+ 136:	00 00       	nop
+ 138:	8e e0       	ldi	r24, 0x0E	; 14
+ 13a:	93 df       	rcall	.-218    	; 0x62 <lcdCommand>
+ 13c:	87 ec       	ldi	r24, 0xC7	; 199
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	01 97       	sbiw	r24, 0x01	; 1
+ 142:	f1 f7       	brne	.-4      	; 0x140 <lcd_init+0x4a>
+ 144:	00 c0       	rjmp	.+0      	; 0x146 <lcd_init+0x50>
+ 146:	00 00       	nop
+ 148:	81 e0       	ldi	r24, 0x01	; 1
+ 14a:	8b df       	rcall	.-234    	; 0x62 <lcdCommand>
+ 14c:	8f e9       	ldi	r24, 0x9F	; 159
+ 14e:	9f e0       	ldi	r25, 0x0F	; 15
+ 150:	01 97       	sbiw	r24, 0x01	; 1
+ 152:	f1 f7       	brne	.-4      	; 0x150 <lcd_init+0x5a>
+ 154:	00 c0       	rjmp	.+0      	; 0x156 <lcd_init+0x60>
+ 156:	00 00       	nop
+ 158:	86 e0       	ldi	r24, 0x06	; 6
+ 15a:	83 df       	rcall	.-250    	; 0x62 <lcdCommand>
+ 15c:	87 ec       	ldi	r24, 0xC7	; 199
+ 15e:	90 e0       	ldi	r25, 0x00	; 0
+ 160:	01 97       	sbiw	r24, 0x01	; 1
+ 162:	f1 f7       	brne	.-4      	; 0x160 <__stack+0x1>
+ 164:	00 c0       	rjmp	.+0      	; 0x166 <__stack+0x7>
+ 166:	00 00       	nop
+ 168:	08 95       	ret
+
+0000016a <lcd_gotoxy>:
+ 16a:	cf 93       	push	r28
+ 16c:	df 93       	push	r29
+ 16e:	00 d0       	rcall	.+0      	; 0x170 <lcd_gotoxy+0x6>
+ 170:	00 d0       	rcall	.+0      	; 0x172 <lcd_gotoxy+0x8>
+ 172:	cd b7       	in	r28, 0x3d	; 61
+ 174:	de b7       	in	r29, 0x3e	; 62
+ 176:	90 e8       	ldi	r25, 0x80	; 128
+ 178:	99 83       	std	Y+1, r25	; 0x01
+ 17a:	90 ec       	ldi	r25, 0xC0	; 192
+ 17c:	9a 83       	std	Y+2, r25	; 0x02
+ 17e:	94 e9       	ldi	r25, 0x94	; 148
+ 180:	9b 83       	std	Y+3, r25	; 0x03
+ 182:	94 ed       	ldi	r25, 0xD4	; 212
+ 184:	9c 83       	std	Y+4, r25	; 0x04
+ 186:	fe 01       	movw	r30, r28
+ 188:	e6 0f       	add	r30, r22
+ 18a:	f1 1d       	adc	r31, r1
+ 18c:	81 50       	subi	r24, 0x01	; 1
+ 18e:	90 81       	ld	r25, Z
+ 190:	89 0f       	add	r24, r25
+ 192:	67 df       	rcall	.-306    	; 0x62 <lcdCommand>
+ 194:	87 ec       	ldi	r24, 0xC7	; 199
+ 196:	90 e0       	ldi	r25, 0x00	; 0
+ 198:	01 97       	sbiw	r24, 0x01	; 1
+ 19a:	f1 f7       	brne	.-4      	; 0x198 <lcd_gotoxy+0x2e>
+ 19c:	00 c0       	rjmp	.+0      	; 0x19e <lcd_gotoxy+0x34>
+ 19e:	00 00       	nop
+ 1a0:	0f 90       	pop	r0
+ 1a2:	0f 90       	pop	r0
+ 1a4:	0f 90       	pop	r0
+ 1a6:	0f 90       	pop	r0
+ 1a8:	df 91       	pop	r29
+ 1aa:	cf 91       	pop	r28
+ 1ac:	08 95       	ret
+
+000001ae <lcd_print>:
+ 1ae:	0f 93       	push	r16
+ 1b0:	1f 93       	push	r17
+ 1b2:	cf 93       	push	r28
+ 1b4:	8c 01       	movw	r16, r24
+ 1b6:	fc 01       	movw	r30, r24
+ 1b8:	80 81       	ld	r24, Z
+ 1ba:	88 23       	and	r24, r24
+ 1bc:	49 f0       	breq	.+18     	; 0x1d0 <lcd_print+0x22>
+ 1be:	c0 e0       	ldi	r28, 0x00	; 0
+ 1c0:	75 df       	rcall	.-278    	; 0xac <lcdData>
+ 1c2:	cf 5f       	subi	r28, 0xFF	; 255
+ 1c4:	f8 01       	movw	r30, r16
+ 1c6:	ec 0f       	add	r30, r28
+ 1c8:	f1 1d       	adc	r31, r1
+ 1ca:	80 81       	ld	r24, Z
+ 1cc:	81 11       	cpse	r24, r1
+ 1ce:	f8 cf       	rjmp	.-16     	; 0x1c0 <lcd_print+0x12>
+ 1d0:	8c e0       	ldi	r24, 0x0C	; 12
+ 1d2:	47 df       	rcall	.-370    	; 0x62 <lcdCommand>
+ 1d4:	cf 91       	pop	r28
+ 1d6:	1f 91       	pop	r17
+ 1d8:	0f 91       	pop	r16
+ 1da:	08 95       	ret
+
+000001dc <clear_lcd>:
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	41 df       	rcall	.-382    	; 0x62 <lcdCommand>
+ 1e0:	8f e9       	ldi	r24, 0x9F	; 159
+ 1e2:	9f e0       	ldi	r25, 0x0F	; 15
+ 1e4:	01 97       	sbiw	r24, 0x01	; 1
+ 1e6:	f1 f7       	brne	.-4      	; 0x1e4 <clear_lcd+0x8>
+ 1e8:	00 c0       	rjmp	.+0      	; 0x1ea <clear_lcd+0xe>
+ 1ea:	00 00       	nop
+ 1ec:	08 95       	ret
+
+000001ee <create_symbol>:
+//unsigned char alarm_2_change = 0;
+//unsigned char active = 0;
+
+void create_symbol()
+{
+	lcdCommand (0x40); //Load CGRAM first address
+ 1ee:	80 e4       	ldi	r24, 0x40	; 64
+ 1f0:	38 df       	rcall	.-400    	; 0x62 <lcdCommand>
+	lcdData(0x04); //Edit row 1 data to CGRAM
+ 1f2:	84 e0       	ldi	r24, 0x04	; 4
+ 1f4:	5b df       	rcall	.-330    	; 0xac <lcdData>
+	lcdData(0x0E); //Edit row 2 data
+ 1f6:	8e e0       	ldi	r24, 0x0E	; 14
+ 1f8:	59 df       	rcall	.-334    	; 0xac <lcdData>
+	lcdData(0x0E); //Edit row 3 data
+ 1fa:	8e e0       	ldi	r24, 0x0E	; 14
+ 1fc:	57 df       	rcall	.-338    	; 0xac <lcdData>
+	lcdData(0x0E); //Edit row 4 data
+ 1fe:	8e e0       	ldi	r24, 0x0E	; 14
+ 200:	55 df       	rcall	.-342    	; 0xac <lcdData>
+	lcdData(0x1F); //Edit row 5 data
+ 202:	8f e1       	ldi	r24, 0x1F	; 31
+ 204:	53 df       	rcall	.-346    	; 0xac <lcdData>
+	lcdData(0x00); //Edit row 6 data
+ 206:	80 e0       	ldi	r24, 0x00	; 0
+ 208:	51 df       	rcall	.-350    	; 0xac <lcdData>
+	lcdData(0x04); //Edit row 7 data
+ 20a:	84 e0       	ldi	r24, 0x04	; 4
+ 20c:	4f df       	rcall	.-354    	; 0xac <lcdData>
+	lcdData(0x00); //Edit row 8 data
+ 20e:	80 e0       	ldi	r24, 0x00	; 0
+ 210:	4d df       	rcall	.-358    	; 0xac <lcdData>
+ 212:	08 95       	ret
+
+00000214 <init_ports>:
+		
+	}
+		
+}
+void init_ports(){
+	DDRD &= ~((1<<PIND0)|(1<<PIND1));      // Configure PD2 and PD3 to be input pins
+ 214:	81 b3       	in	r24, 0x11	; 17
+ 216:	8c 7f       	andi	r24, 0xFC	; 252
+ 218:	81 bb       	out	0x11, r24	; 17
+	DDRB = 0xFF;                       // Configure PortB to be an output port
+ 21a:	8f ef       	ldi	r24, 0xFF	; 255
+ 21c:	87 bb       	out	0x17, r24	; 23
+	PORTD = ((1<<PIND0)|(1<<PIND1));      // Activate internal pull-up resistor
+ 21e:	83 e0       	ldi	r24, 0x03	; 3
+ 220:	82 bb       	out	0x12, r24	; 18
+ 222:	08 95       	ret
+
+00000224 <init_timers>:
+}
+
+void init_timers(){
+	TIMSK |= (1<<OCIE1A);       // Enables output compare 1 match A interrupt
+ 224:	89 b7       	in	r24, 0x39	; 57
+ 226:	80 64       	ori	r24, 0x40	; 64
+ 228:	89 bf       	out	0x39, r24	; 57
+	TCCR1A = 0;                 // sets the timer/counter1 control compare match A register to 0
+ 22a:	1f bc       	out	0x2f, r1	; 47
+	TCCR1B = 0b00001100;          // CTC mode with a pre-scaler of 256
+ 22c:	8c e0       	ldi	r24, 0x0C	; 12
+ 22e:	8e bd       	out	0x2e, r24	; 46
+	OCR1A = 31250;              // clock cycles required to generate a delay of 1 seconds
+ 230:	82 e1       	ldi	r24, 0x12	; 18
+ 232:	9a e7       	ldi	r25, 0x7A	; 122
+ 234:	9b bd       	out	0x2b, r25	; 43
+ 236:	8a bd       	out	0x2a, r24	; 42
+ 238:	08 95       	ret
+
+0000023a <__vector_4>:
+}
+
+ISR(TIMER1_COMPA_vect){
+ 23a:	1f 92       	push	r1
+ 23c:	0f 92       	push	r0
+ 23e:	0f b6       	in	r0, 0x3f	; 63
+ 240:	0f 92       	push	r0
+ 242:	11 24       	eor	r1, r1
+ 244:	2f 93       	push	r18
+ 246:	3f 93       	push	r19
+ 248:	8f 93       	push	r24
+ 24a:	9f 93       	push	r25
+	seconds_counter++;
+ 24c:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <seconds_counter>
+ 250:	8f 5f       	subi	r24, 0xFF	; 255
+	if(seconds_counter==60){
+ 252:	8c 33       	cpi	r24, 0x3C	; 60
+ 254:	19 f0       	breq	.+6      	; 0x25c <__vector_4+0x22>
+	TCCR1B = 0b00001100;          // CTC mode with a pre-scaler of 256
+	OCR1A = 31250;              // clock cycles required to generate a delay of 1 seconds
+}
+
+ISR(TIMER1_COMPA_vect){
+	seconds_counter++;
+ 256:	80 93 3c 01 	sts	0x013C, r24	; 0x80013c <seconds_counter>
+ 25a:	07 c0       	rjmp	.+14     	; 0x26a <__vector_4+0x30>
+	if(seconds_counter==60){
+		seconds_counter = 0;
+ 25c:	10 92 3c 01 	sts	0x013C, r1	; 0x80013c <seconds_counter>
+		minutes_counter++;
+ 260:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <minutes_counter>
+ 264:	8f 5f       	subi	r24, 0xFF	; 255
+ 266:	80 93 37 01 	sts	0x0137, r24	; 0x800137 <minutes_counter>
+	}
+	if(minutes_counter==60){
+ 26a:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <minutes_counter>
+ 26e:	8c 33       	cpi	r24, 0x3C	; 60
+ 270:	39 f4       	brne	.+14     	; 0x280 <__vector_4+0x46>
+		minutes_counter = 0;
+ 272:	10 92 37 01 	sts	0x0137, r1	; 0x800137 <minutes_counter>
+		hours_counter++;
+ 276:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 27a:	8f 5f       	subi	r24, 0xFF	; 255
+ 27c:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <hours_counter>
+	}
+	
+	if(hours_counter==24){
+ 280:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 284:	88 31       	cpi	r24, 0x18	; 24
+ 286:	11 f4       	brne	.+4      	; 0x28c <__vector_4+0x52>
+		hours_counter = 0;
+ 288:	10 92 77 00 	sts	0x0077, r1	; 0x800077 <hours_counter>
+	}
+	
+	if(status_of_alarm_1==active){
+ 28c:	90 91 27 01 	lds	r25, 0x0127	; 0x800127 <status_of_alarm_1>
+ 290:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <active>
+ 294:	98 13       	cpse	r25, r24
+ 296:	1b c0       	rjmp	.+54     	; 0x2ce <__vector_4+0x94>
+		if(previous_alarm_1_hour_counter_counter==hours_counter && previous_alarm_1_minute_counter==minutes_counter && alarm_1_state==off){
+ 298:	30 91 1c 01 	lds	r19, 0x011C	; 0x80011c <previous_alarm_1_hour_counter_counter>
+ 29c:	20 91 77 00 	lds	r18, 0x0077	; 0x800077 <hours_counter>
+ 2a0:	32 13       	cpse	r19, r18
+ 2a2:	15 c0       	rjmp	.+42     	; 0x2ce <__vector_4+0x94>
+ 2a4:	30 91 1a 01 	lds	r19, 0x011A	; 0x80011a <previous_alarm_1_minute_counter>
+ 2a8:	20 91 37 01 	lds	r18, 0x0137	; 0x800137 <minutes_counter>
+ 2ac:	32 13       	cpse	r19, r18
+ 2ae:	0f c0       	rjmp	.+30     	; 0x2ce <__vector_4+0x94>
+ 2b0:	30 91 2a 01 	lds	r19, 0x012A	; 0x80012a <alarm_1_state>
+ 2b4:	20 91 28 01 	lds	r18, 0x0128	; 0x800128 <off>
+ 2b8:	32 13       	cpse	r19, r18
+ 2ba:	09 c0       	rjmp	.+18     	; 0x2ce <__vector_4+0x94>
+			alarm_1_state = on;
+ 2bc:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 2c0:	80 93 2a 01 	sts	0x012A, r24	; 0x80012a <alarm_1_state>
+			//status_of_alarm_1 = deactive;
+			//PORTB |= (1<<PORTB0); 
+		}
+	}
+	if(status_of_alarm_2==active){
+ 2c4:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <status_of_alarm_2>
+ 2c8:	98 13       	cpse	r25, r24
+ 2ca:	21 c0       	rjmp	.+66     	; 0x30e <__vector_4+0xd4>
+ 2cc:	59 c0       	rjmp	.+178    	; 0x380 <__vector_4+0x146>
+ 2ce:	90 91 26 01 	lds	r25, 0x0126	; 0x800126 <status_of_alarm_2>
+ 2d2:	89 13       	cpse	r24, r25
+ 2d4:	16 c0       	rjmp	.+44     	; 0x302 <__vector_4+0xc8>
+		if(previous_alarm_2_hour_counter_counter==hours_counter && previous_alarm_2_minute_counter==minutes_counter && alarm_2_state==off){
+ 2d6:	90 91 18 01 	lds	r25, 0x0118	; 0x800118 <previous_alarm_2_hour_counter_counter>
+ 2da:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 2de:	98 13       	cpse	r25, r24
+ 2e0:	10 c0       	rjmp	.+32     	; 0x302 <__vector_4+0xc8>
+ 2e2:	90 91 16 01 	lds	r25, 0x0116	; 0x800116 <previous_alarm_2_minute_counter>
+ 2e6:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <minutes_counter>
+ 2ea:	98 13       	cpse	r25, r24
+ 2ec:	0a c0       	rjmp	.+20     	; 0x302 <__vector_4+0xc8>
+ 2ee:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <alarm_2_state>
+ 2f2:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 2f6:	98 13       	cpse	r25, r24
+ 2f8:	04 c0       	rjmp	.+8      	; 0x302 <__vector_4+0xc8>
+			alarm_2_state = on;
+ 2fa:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 2fe:	80 93 29 01 	sts	0x0129, r24	; 0x800129 <alarm_2_state>
+			//status_of_alarm_1 = deactive;
+			//PORTB |= (1<<PORTB0);
+		}
+	}
+	///////////////////////////////////////////////////////////////////
+	if(alarm_1_state==on){
+ 302:	90 91 2a 01 	lds	r25, 0x012A	; 0x80012a <alarm_1_state>
+ 306:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 30a:	98 13       	cpse	r25, r24
+ 30c:	13 c0       	rjmp	.+38     	; 0x334 <__vector_4+0xfa>
+		seconds_alarm_1_on++;
+ 30e:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <seconds_alarm_1_on>
+ 312:	8f 5f       	subi	r24, 0xFF	; 255
+ 314:	80 93 14 01 	sts	0x0114, r24	; 0x800114 <seconds_alarm_1_on>
+		if(seconds_alarm_1_on==60){
+ 318:	8c 33       	cpi	r24, 0x3C	; 60
+ 31a:	39 f4       	brne	.+14     	; 0x32a <__vector_4+0xf0>
+			seconds_alarm_1_on = 0;
+ 31c:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <seconds_alarm_1_on>
+			alarm_1_beeping_time = sixty_seconds_reached;
+ 320:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+ 324:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <alarm_1_beeping_time>
+ 328:	0b c0       	rjmp	.+22     	; 0x340 <__vector_4+0x106>
+		}
+		else{
+			alarm_1_beeping_time = sixty_seconds_not_reached;
+ 32a:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 32e:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <alarm_1_beeping_time>
+ 332:	06 c0       	rjmp	.+12     	; 0x340 <__vector_4+0x106>
+		}
+	}
+	else{
+		seconds_alarm_1_on = 0;
+ 334:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <seconds_alarm_1_on>
+		alarm_1_beeping_time = sixty_seconds_not_reached;
+ 338:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 33c:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <alarm_1_beeping_time>
+	}
+	
+	if(alarm_2_state==on){
+ 340:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <alarm_2_state>
+ 344:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 348:	98 13       	cpse	r25, r24
+ 34a:	13 c0       	rjmp	.+38     	; 0x372 <__vector_4+0x138>
+		seconds_alarm_2_on++;
+ 34c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <seconds_alarm_2_on>
+ 350:	8f 5f       	subi	r24, 0xFF	; 255
+ 352:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <seconds_alarm_2_on>
+		if(seconds_alarm_2_on==60){
+ 356:	8c 33       	cpi	r24, 0x3C	; 60
+ 358:	39 f4       	brne	.+14     	; 0x368 <__vector_4+0x12e>
+			seconds_alarm_2_on = 0;
+ 35a:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <seconds_alarm_2_on>
+			alarm_2_beeping_time = sixty_seconds_reached;
+ 35e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+ 362:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <alarm_2_beeping_time>
+ 366:	13 c0       	rjmp	.+38     	; 0x38e <__vector_4+0x154>
+		}
+		else{
+			alarm_2_beeping_time = sixty_seconds_not_reached;
+ 368:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 36c:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <alarm_2_beeping_time>
+ 370:	0e c0       	rjmp	.+28     	; 0x38e <__vector_4+0x154>
+		}
+	}
+	else{
+		seconds_alarm_2_on = 0;
+ 372:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <seconds_alarm_2_on>
+		alarm_2_beeping_time = sixty_seconds_not_reached;
+ 376:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 37a:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <alarm_2_beeping_time>
+	}
+	//////////////////////////////////////////////////////////////////
+}
+ 37e:	07 c0       	rjmp	.+14     	; 0x38e <__vector_4+0x154>
+			//status_of_alarm_1 = deactive;
+			//PORTB |= (1<<PORTB0); 
+		}
+	}
+	if(status_of_alarm_2==active){
+		if(previous_alarm_2_hour_counter_counter==hours_counter && previous_alarm_2_minute_counter==minutes_counter && alarm_2_state==off){
+ 380:	90 91 18 01 	lds	r25, 0x0118	; 0x800118 <previous_alarm_2_hour_counter_counter>
+ 384:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 388:	98 13       	cpse	r25, r24
+ 38a:	c1 cf       	rjmp	.-126    	; 0x30e <__vector_4+0xd4>
+ 38c:	aa cf       	rjmp	.-172    	; 0x2e2 <__vector_4+0xa8>
+	else{
+		seconds_alarm_2_on = 0;
+		alarm_2_beeping_time = sixty_seconds_not_reached;
+	}
+	//////////////////////////////////////////////////////////////////
+}
+ 38e:	9f 91       	pop	r25
+ 390:	8f 91       	pop	r24
+ 392:	3f 91       	pop	r19
+ 394:	2f 91       	pop	r18
+ 396:	0f 90       	pop	r0
+ 398:	0f be       	out	0x3f, r0	; 63
+ 39a:	0f 90       	pop	r0
+ 39c:	1f 90       	pop	r1
+ 39e:	18 95       	reti
+
+000003a0 <displayTime>:
+
+void displayTime(){
+ 3a0:	cf 93       	push	r28
+ 3a2:	df 93       	push	r29
+	
+	// Splitting of values into individual digits
+	seconds_zero_val = seconds_counter%10;
+ 3a4:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <seconds_counter>
+ 3a8:	3a e0       	ldi	r19, 0x0A	; 10
+ 3aa:	63 2f       	mov	r22, r19
+ 3ac:	95 d5       	rcall	.+2858   	; 0xed8 <__udivmodqi4>
+ 3ae:	c8 2f       	mov	r28, r24
+ 3b0:	29 2f       	mov	r18, r25
+ 3b2:	90 93 3b 01 	sts	0x013B, r25	; 0x80013b <seconds_zero_val>
+	seconds_one_val = seconds_counter/10;
+ 3b6:	80 93 3a 01 	sts	0x013A, r24	; 0x80013a <seconds_one_val>
+	
+	minutes_zero_val = minutes_counter%10;
+ 3ba:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <minutes_counter>
+ 3be:	8c d5       	rcall	.+2840   	; 0xed8 <__udivmodqi4>
+ 3c0:	48 2f       	mov	r20, r24
+ 3c2:	a9 2f       	mov	r26, r25
+ 3c4:	90 93 36 01 	sts	0x0136, r25	; 0x800136 <minutes_zero_val>
+	minutes_one_val = minutes_counter/10;
+ 3c8:	80 93 35 01 	sts	0x0135, r24	; 0x800135 <minutes_one_val>
+	
+	hours_zero_val = hours_counter%10;
+ 3cc:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 3d0:	83 d5       	rcall	.+2822   	; 0xed8 <__udivmodqi4>
+ 3d2:	90 93 32 01 	sts	0x0132, r25	; 0x800132 <hours_zero_val>
+	hours_one_val = hours_counter/10;
+ 3d6:	80 93 31 01 	sts	0x0131, r24	; 0x800131 <hours_one_val>
+	
+	// Conversion of values to ASCII code
+	seconds_zero = DISPLAY[seconds_zero_val];
+ 3da:	30 e0       	ldi	r19, 0x00	; 0
+ 3dc:	28 58       	subi	r18, 0x88	; 136
+ 3de:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3e0:	f9 01       	movw	r30, r18
+ 3e2:	20 81       	ld	r18, Z
+ 3e4:	20 93 39 01 	sts	0x0139, r18	; 0x800139 <seconds_zero>
+	seconds_one =  DISPLAY[seconds_one_val];
+ 3e8:	d0 e0       	ldi	r29, 0x00	; 0
+ 3ea:	c8 58       	subi	r28, 0x88	; 136
+ 3ec:	df 4f       	sbci	r29, 0xFF	; 255
+ 3ee:	28 81       	ld	r18, Y
+ 3f0:	20 93 38 01 	sts	0x0138, r18	; 0x800138 <seconds_one>
+	
+	minutes_zero = DISPLAY[minutes_zero_val];
+ 3f4:	b0 e0       	ldi	r27, 0x00	; 0
+ 3f6:	a8 58       	subi	r26, 0x88	; 136
+ 3f8:	bf 4f       	sbci	r27, 0xFF	; 255
+ 3fa:	2c 91       	ld	r18, X
+ 3fc:	20 93 34 01 	sts	0x0134, r18	; 0x800134 <minutes_zero>
+	minutes_one = DISPLAY[minutes_one_val];
+ 400:	e4 2f       	mov	r30, r20
+ 402:	f0 e0       	ldi	r31, 0x00	; 0
+ 404:	e8 58       	subi	r30, 0x88	; 136
+ 406:	ff 4f       	sbci	r31, 0xFF	; 255
+ 408:	20 81       	ld	r18, Z
+ 40a:	20 93 33 01 	sts	0x0133, r18	; 0x800133 <minutes_one>
+	
+	hours_zero = DISPLAY[hours_zero_val];
+ 40e:	e9 2f       	mov	r30, r25
+ 410:	f0 e0       	ldi	r31, 0x00	; 0
+ 412:	e8 58       	subi	r30, 0x88	; 136
+ 414:	ff 4f       	sbci	r31, 0xFF	; 255
+ 416:	90 81       	ld	r25, Z
+ 418:	90 93 30 01 	sts	0x0130, r25	; 0x800130 <hours_zero>
+	hours_one = DISPLAY[hours_one_val];
+ 41c:	e8 2f       	mov	r30, r24
+ 41e:	f0 e0       	ldi	r31, 0x00	; 0
+ 420:	e8 58       	subi	r30, 0x88	; 136
+ 422:	ff 4f       	sbci	r31, 0xFF	; 255
+ 424:	80 81       	ld	r24, Z
+ 426:	80 93 2f 01 	sts	0x012F, r24	; 0x80012f <hours_one>
+	
+	lcd_gotoxy(1,1);
+ 42a:	61 e0       	ldi	r22, 0x01	; 1
+ 42c:	81 e0       	ldi	r24, 0x01	; 1
+ 42e:	9d de       	rcall	.-710    	; 0x16a <lcd_gotoxy>
+	lcdData(hours_one);
+ 430:	80 91 2f 01 	lds	r24, 0x012F	; 0x80012f <hours_one>
+ 434:	3b de       	rcall	.-906    	; 0xac <lcdData>
+	lcdData(hours_zero);
+ 436:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <hours_zero>
+ 43a:	38 de       	rcall	.-912    	; 0xac <lcdData>
+	lcd_print(":");
+ 43c:	82 e8       	ldi	r24, 0x82	; 130
+ 43e:	90 e0       	ldi	r25, 0x00	; 0
+ 440:	b6 de       	rcall	.-660    	; 0x1ae <lcd_print>
+	lcdData(minutes_one);
+ 442:	80 91 33 01 	lds	r24, 0x0133	; 0x800133 <minutes_one>
+ 446:	32 de       	rcall	.-924    	; 0xac <lcdData>
+	lcdData(minutes_zero);
+ 448:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <minutes_zero>
+ 44c:	2f de       	rcall	.-930    	; 0xac <lcdData>
+	lcd_print(":");
+ 44e:	82 e8       	ldi	r24, 0x82	; 130
+ 450:	90 e0       	ldi	r25, 0x00	; 0
+ 452:	ad de       	rcall	.-678    	; 0x1ae <lcd_print>
+	lcdData(seconds_one);
+ 454:	80 91 38 01 	lds	r24, 0x0138	; 0x800138 <seconds_one>
+ 458:	29 de       	rcall	.-942    	; 0xac <lcdData>
+	lcdData(seconds_zero);
+ 45a:	80 91 39 01 	lds	r24, 0x0139	; 0x800139 <seconds_zero>
+ 45e:	26 de       	rcall	.-948    	; 0xac <lcdData>
+	lcd_gotoxy(10,1);
+ 460:	61 e0       	ldi	r22, 0x01	; 1
+ 462:	8a e0       	ldi	r24, 0x0A	; 10
+ 464:	82 de       	rcall	.-764    	; 0x16a <lcd_gotoxy>
+	lcd_print("SetTime");
+ 466:	84 e8       	ldi	r24, 0x84	; 132
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	a1 de       	rcall	.-702    	; 0x1ae <lcd_print>
+	//lcd_print(" SetTime");
+}
+ 46c:	df 91       	pop	r29
+ 46e:	cf 91       	pop	r28
+ 470:	08 95       	ret
+
+00000472 <display_alarm_1_time>:
+		
+void display_alarm_1_time(){
+	alarm_1_hour_one_val = DISPLAY[alarm_1_hour_counter/10];
+ 472:	80 91 2e 01 	lds	r24, 0x012E	; 0x80012e <alarm_1_hour_counter>
+ 476:	2a e0       	ldi	r18, 0x0A	; 10
+ 478:	62 2f       	mov	r22, r18
+ 47a:	2e d5       	rcall	.+2652   	; 0xed8 <__udivmodqi4>
+ 47c:	e8 2f       	mov	r30, r24
+ 47e:	f0 e0       	ldi	r31, 0x00	; 0
+ 480:	e8 58       	subi	r30, 0x88	; 136
+ 482:	ff 4f       	sbci	r31, 0xFF	; 255
+ 484:	80 81       	ld	r24, Z
+ 486:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <alarm_1_hour_one_val>
+	alarm_1_hour_zero_val = DISPLAY[alarm_1_hour_counter%10];
+ 48a:	e9 2f       	mov	r30, r25
+ 48c:	f0 e0       	ldi	r31, 0x00	; 0
+ 48e:	e8 58       	subi	r30, 0x88	; 136
+ 490:	ff 4f       	sbci	r31, 0xFF	; 255
+ 492:	80 81       	ld	r24, Z
+ 494:	80 93 75 00 	sts	0x0075, r24	; 0x800075 <alarm_1_hour_zero_val>
+	alarm_1_minute_one_val = DISPLAY[alarm_1_minute_counter/10];
+ 498:	80 91 2d 01 	lds	r24, 0x012D	; 0x80012d <alarm_1_minute_counter>
+ 49c:	1d d5       	rcall	.+2618   	; 0xed8 <__udivmodqi4>
+ 49e:	e8 2f       	mov	r30, r24
+ 4a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 4a2:	e8 58       	subi	r30, 0x88	; 136
+ 4a4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4a6:	80 81       	ld	r24, Z
+ 4a8:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <alarm_1_minute_one_val>
+	alarm_1_minute_zero_val = DISPLAY[alarm_1_minute_counter%10];
+ 4ac:	e9 2f       	mov	r30, r25
+ 4ae:	f0 e0       	ldi	r31, 0x00	; 0
+ 4b0:	e8 58       	subi	r30, 0x88	; 136
+ 4b2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4b4:	80 81       	ld	r24, Z
+ 4b6:	80 93 73 00 	sts	0x0073, r24	; 0x800073 <alarm_1_minute_zero_val>
+	
+	lcd_gotoxy(1,1);
+ 4ba:	61 e0       	ldi	r22, 0x01	; 1
+ 4bc:	81 e0       	ldi	r24, 0x01	; 1
+ 4be:	55 de       	rcall	.-854    	; 0x16a <lcd_gotoxy>
+	lcdData(alarm_1_hour_one_val);
+ 4c0:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <alarm_1_hour_one_val>
+ 4c4:	f3 dd       	rcall	.-1050   	; 0xac <lcdData>
+	lcdData(alarm_1_hour_zero_val);
+ 4c6:	80 91 75 00 	lds	r24, 0x0075	; 0x800075 <alarm_1_hour_zero_val>
+ 4ca:	f0 dd       	rcall	.-1056   	; 0xac <lcdData>
+	lcd_print(":");
+ 4cc:	82 e8       	ldi	r24, 0x82	; 130
+ 4ce:	90 e0       	ldi	r25, 0x00	; 0
+ 4d0:	6e de       	rcall	.-804    	; 0x1ae <lcd_print>
+	lcdData(alarm_1_minute_one_val);
+ 4d2:	80 91 74 00 	lds	r24, 0x0074	; 0x800074 <alarm_1_minute_one_val>
+ 4d6:	ea dd       	rcall	.-1068   	; 0xac <lcdData>
+	lcdData(alarm_1_minute_zero_val);
+ 4d8:	80 91 73 00 	lds	r24, 0x0073	; 0x800073 <alarm_1_minute_zero_val>
+ 4dc:	e7 dd       	rcall	.-1074   	; 0xac <lcdData>
+	lcd_print(" SetAL1");
+ 4de:	8c e8       	ldi	r24, 0x8C	; 140
+ 4e0:	90 e0       	ldi	r25, 0x00	; 0
+ 4e2:	65 de       	rcall	.-822    	; 0x1ae <lcd_print>
+	lcd_print(" Off");
+ 4e4:	8a ee       	ldi	r24, 0xEA	; 234
+ 4e6:	90 e0       	ldi	r25, 0x00	; 0
+ 4e8:	62 de       	rcall	.-828    	; 0x1ae <lcd_print>
+	lcd_gotoxy(16,2);
+ 4ea:	62 e0       	ldi	r22, 0x02	; 2
+ 4ec:	80 e1       	ldi	r24, 0x10	; 16
+ 4ee:	3d de       	rcall	.-902    	; 0x16a <lcd_gotoxy>
+	lcdData(0);
+ 4f0:	80 e0       	ldi	r24, 0x00	; 0
+ 4f2:	dc dd       	rcall	.-1096   	; 0xac <lcdData>
+ 4f4:	08 95       	ret
+
+000004f6 <display_alarm_2_time>:
+}
+void display_alarm_2_time(){
+	alarm_2_hour_one_val = DISPLAY[alarm_2_hour_counter/10];
+ 4f6:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <alarm_2_hour_counter>
+ 4fa:	2a e0       	ldi	r18, 0x0A	; 10
+ 4fc:	62 2f       	mov	r22, r18
+ 4fe:	ec d4       	rcall	.+2520   	; 0xed8 <__udivmodqi4>
+ 500:	e8 2f       	mov	r30, r24
+ 502:	f0 e0       	ldi	r31, 0x00	; 0
+ 504:	e8 58       	subi	r30, 0x88	; 136
+ 506:	ff 4f       	sbci	r31, 0xFF	; 255
+ 508:	80 81       	ld	r24, Z
+ 50a:	80 93 72 00 	sts	0x0072, r24	; 0x800072 <alarm_2_hour_one_val>
+	alarm_2_hour_zero_val = DISPLAY[alarm_2_hour_counter%10];
+ 50e:	e9 2f       	mov	r30, r25
+ 510:	f0 e0       	ldi	r31, 0x00	; 0
+ 512:	e8 58       	subi	r30, 0x88	; 136
+ 514:	ff 4f       	sbci	r31, 0xFF	; 255
+ 516:	80 81       	ld	r24, Z
+ 518:	80 93 71 00 	sts	0x0071, r24	; 0x800071 <alarm_2_hour_zero_val>
+	alarm_2_minute_one_val = DISPLAY[alarm_2_minute_counter/10];
+ 51c:	80 91 2b 01 	lds	r24, 0x012B	; 0x80012b <alarm_2_minute_counter>
+ 520:	db d4       	rcall	.+2486   	; 0xed8 <__udivmodqi4>
+ 522:	e8 2f       	mov	r30, r24
+ 524:	f0 e0       	ldi	r31, 0x00	; 0
+ 526:	e8 58       	subi	r30, 0x88	; 136
+ 528:	ff 4f       	sbci	r31, 0xFF	; 255
+ 52a:	80 81       	ld	r24, Z
+ 52c:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <alarm_2_minute_one_val>
+	alarm_2_minute_zero_val = DISPLAY[alarm_2_minute_counter%10];
+ 530:	e9 2f       	mov	r30, r25
+ 532:	f0 e0       	ldi	r31, 0x00	; 0
+ 534:	e8 58       	subi	r30, 0x88	; 136
+ 536:	ff 4f       	sbci	r31, 0xFF	; 255
+ 538:	80 81       	ld	r24, Z
+ 53a:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <alarm_2_minute_zero_val>
+	
+	lcd_gotoxy(1,1);
+ 53e:	61 e0       	ldi	r22, 0x01	; 1
+ 540:	81 e0       	ldi	r24, 0x01	; 1
+ 542:	13 de       	rcall	.-986    	; 0x16a <lcd_gotoxy>
+	lcdData(alarm_2_hour_one_val);
+ 544:	80 91 72 00 	lds	r24, 0x0072	; 0x800072 <alarm_2_hour_one_val>
+ 548:	b1 dd       	rcall	.-1182   	; 0xac <lcdData>
+	lcdData(alarm_2_hour_zero_val);
+ 54a:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <alarm_2_hour_zero_val>
+ 54e:	ae dd       	rcall	.-1188   	; 0xac <lcdData>
+	lcd_print(":");
+ 550:	82 e8       	ldi	r24, 0x82	; 130
+ 552:	90 e0       	ldi	r25, 0x00	; 0
+ 554:	2c de       	rcall	.-936    	; 0x1ae <lcd_print>
+	lcdData(alarm_2_minute_one_val);
+ 556:	80 91 70 00 	lds	r24, 0x0070	; 0x800070 <alarm_2_minute_one_val>
+ 55a:	a8 dd       	rcall	.-1200   	; 0xac <lcdData>
+	lcdData(alarm_2_minute_zero_val);
+ 55c:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <alarm_2_minute_zero_val>
+ 560:	a5 dd       	rcall	.-1206   	; 0xac <lcdData>
+	lcd_print(" SetAL2");
+ 562:	84 e9       	ldi	r24, 0x94	; 148
+ 564:	90 e0       	ldi	r25, 0x00	; 0
+ 566:	23 de       	rcall	.-954    	; 0x1ae <lcd_print>
+	lcd_print(" Off");
+ 568:	8a ee       	ldi	r24, 0xEA	; 234
+ 56a:	90 e0       	ldi	r25, 0x00	; 0
+ 56c:	20 de       	rcall	.-960    	; 0x1ae <lcd_print>
+	lcd_gotoxy(16,2);
+ 56e:	62 e0       	ldi	r22, 0x02	; 2
+ 570:	80 e1       	ldi	r24, 0x10	; 16
+ 572:	fb dd       	rcall	.-1034   	; 0x16a <lcd_gotoxy>
+	lcdData(0);
+ 574:	80 e0       	ldi	r24, 0x00	; 0
+ 576:	9a dd       	rcall	.-1228   	; 0xac <lcdData>
+ 578:	08 95       	ret
+
+0000057a <beeping_alarm>:
+}
+
+
+void beeping_alarm(){
+ 57a:	cf 93       	push	r28
+	if(alarm_1_state==on){
+ 57c:	90 91 2a 01 	lds	r25, 0x012A	; 0x80012a <alarm_1_state>
+ 580:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 584:	98 13       	cpse	r25, r24
+ 586:	55 c0       	rjmp	.+170    	; 0x632 <beeping_alarm+0xb8>
+		clear_lcd();
+ 588:	29 de       	rcall	.-942    	; 0x1dc <clear_lcd>
+		while(((PIND & (1<<PIND0))==1) && (alarm_1_beeping_time==sixty_seconds_not_reached) && (alarm_1_state==on)){
+ 58a:	80 9b       	sbis	0x10, 0	; 16
+ 58c:	48 c0       	rjmp	.+144    	; 0x61e <beeping_alarm+0xa4>
+ 58e:	90 91 12 01 	lds	r25, 0x0112	; 0x800112 <alarm_1_beeping_time>
+ 592:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 596:	98 13       	cpse	r25, r24
+ 598:	42 c0       	rjmp	.+132    	; 0x61e <beeping_alarm+0xa4>
+ 59a:	90 91 2a 01 	lds	r25, 0x012A	; 0x80012a <alarm_1_state>
+ 59e:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 5a2:	98 13       	cpse	r25, r24
+ 5a4:	3c c0       	rjmp	.+120    	; 0x61e <beeping_alarm+0xa4>
+			PORTB ^= (1<<PORTB0);
+ 5a6:	c1 e0       	ldi	r28, 0x01	; 1
+ 5a8:	88 b3       	in	r24, 0x18	; 24
+ 5aa:	8c 27       	eor	r24, r28
+ 5ac:	88 bb       	out	0x18, r24	; 24
+			lcd_gotoxy(4,1);
+ 5ae:	6c 2f       	mov	r22, r28
+ 5b0:	84 e0       	ldi	r24, 0x04	; 4
+ 5b2:	db dd       	rcall	.-1098   	; 0x16a <lcd_gotoxy>
+			lcd_print("WAKE UP");
+ 5b4:	8c e9       	ldi	r24, 0x9C	; 156
+ 5b6:	90 e0       	ldi	r25, 0x00	; 0
+ 5b8:	fa dd       	rcall	.-1036   	; 0x1ae <lcd_print>
+			lcd_gotoxy(1,2);
+ 5ba:	62 e0       	ldi	r22, 0x02	; 2
+ 5bc:	8c 2f       	mov	r24, r28
+ 5be:	d5 dd       	rcall	.-1110   	; 0x16a <lcd_gotoxy>
+			lcd_print("Press to stop");
+ 5c0:	84 ea       	ldi	r24, 0xA4	; 164
+ 5c2:	90 e0       	ldi	r25, 0x00	; 0
+ 5c4:	f4 dd       	rcall	.-1048   	; 0x1ae <lcd_print>
+			if((PIND & (1<<PIND0))==0){
+ 5c6:	80 99       	sbic	0x10, 0	; 16
+ 5c8:	09 c0       	rjmp	.+18     	; 0x5dc <beeping_alarm+0x62>
+				alarm_1_state = off;
+ 5ca:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 5ce:	80 93 2a 01 	sts	0x012A, r24	; 0x80012a <alarm_1_state>
+				status_of_alarm_1 = deactive;
+ 5d2:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ 5d6:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <status_of_alarm_1>
+ 5da:	0a c0       	rjmp	.+20     	; 0x5f0 <beeping_alarm+0x76>
+				//PORTB &= ~(1<<PORTB0);
+			}
+			else if((PIND & (1<<PIND1))==0){
+ 5dc:	81 99       	sbic	0x10, 1	; 16
+ 5de:	08 c0       	rjmp	.+16     	; 0x5f0 <beeping_alarm+0x76>
+				alarm_1_state = off;
+ 5e0:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 5e4:	80 93 2a 01 	sts	0x012A, r24	; 0x80012a <alarm_1_state>
+				status_of_alarm_1 = deactive;
+ 5e8:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ 5ec:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <status_of_alarm_1>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 5f0:	2f ef       	ldi	r18, 0xFF	; 255
+ 5f2:	80 e7       	ldi	r24, 0x70	; 112
+ 5f4:	92 e0       	ldi	r25, 0x02	; 2
+ 5f6:	21 50       	subi	r18, 0x01	; 1
+ 5f8:	80 40       	sbci	r24, 0x00	; 0
+ 5fa:	90 40       	sbci	r25, 0x00	; 0
+ 5fc:	e1 f7       	brne	.-8      	; 0x5f6 <beeping_alarm+0x7c>
+ 5fe:	00 c0       	rjmp	.+0      	; 0x600 <beeping_alarm+0x86>
+ 600:	00 00       	nop
+
+
+void beeping_alarm(){
+	if(alarm_1_state==on){
+		clear_lcd();
+		while(((PIND & (1<<PIND0))==1) && (alarm_1_beeping_time==sixty_seconds_not_reached) && (alarm_1_state==on)){
+ 602:	80 9b       	sbis	0x10, 0	; 16
+ 604:	0c c0       	rjmp	.+24     	; 0x61e <beeping_alarm+0xa4>
+ 606:	90 91 12 01 	lds	r25, 0x0112	; 0x800112 <alarm_1_beeping_time>
+ 60a:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 60e:	98 13       	cpse	r25, r24
+ 610:	06 c0       	rjmp	.+12     	; 0x61e <beeping_alarm+0xa4>
+ 612:	90 91 2a 01 	lds	r25, 0x012A	; 0x80012a <alarm_1_state>
+ 616:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 61a:	98 17       	cp	r25, r24
+ 61c:	29 f2       	breq	.-118    	; 0x5a8 <beeping_alarm+0x2e>
+				status_of_alarm_1 = deactive;
+				//PORTB &= ~(1<<PORTB0);
+			}
+			_delay_ms(100);
+		}
+		clear_lcd();
+ 61e:	de dd       	rcall	.-1092   	; 0x1dc <clear_lcd>
+		alarm_1_state = off;
+ 620:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 624:	80 93 2a 01 	sts	0x012A, r24	; 0x80012a <alarm_1_state>
+		status_of_alarm_1 = deactive;
+ 628:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ 62c:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <status_of_alarm_1>
+		PORTB &= ~(1<<PORTB0);
+ 630:	c0 98       	cbi	0x18, 0	; 24
+	}
+	
+    if(alarm_2_state==on){
+ 632:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <alarm_2_state>
+ 636:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 63a:	98 13       	cpse	r25, r24
+ 63c:	54 c0       	rjmp	.+168    	; 0x6e6 <beeping_alarm+0x16c>
+	    clear_lcd();
+ 63e:	ce dd       	rcall	.-1124   	; 0x1dc <clear_lcd>
+	    while(((PIND & (1<<PIND0))==1) && (alarm_2_beeping_time==sixty_seconds_not_reached) && (alarm_2_state==on)){
+ 640:	80 9b       	sbis	0x10, 0	; 16
+ 642:	48 c0       	rjmp	.+144    	; 0x6d4 <beeping_alarm+0x15a>
+ 644:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <alarm_2_beeping_time>
+ 648:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 64c:	98 13       	cpse	r25, r24
+ 64e:	42 c0       	rjmp	.+132    	; 0x6d4 <beeping_alarm+0x15a>
+ 650:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <alarm_2_state>
+ 654:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 658:	98 13       	cpse	r25, r24
+ 65a:	3c c0       	rjmp	.+120    	; 0x6d4 <beeping_alarm+0x15a>
+		    PORTB ^= (1<<PORTB0);
+ 65c:	c1 e0       	ldi	r28, 0x01	; 1
+ 65e:	88 b3       	in	r24, 0x18	; 24
+ 660:	8c 27       	eor	r24, r28
+ 662:	88 bb       	out	0x18, r24	; 24
+		    lcd_gotoxy(4,1);
+ 664:	6c 2f       	mov	r22, r28
+ 666:	84 e0       	ldi	r24, 0x04	; 4
+ 668:	80 dd       	rcall	.-1280   	; 0x16a <lcd_gotoxy>
+		    lcd_print("WAKE UP");
+ 66a:	8c e9       	ldi	r24, 0x9C	; 156
+ 66c:	90 e0       	ldi	r25, 0x00	; 0
+ 66e:	9f dd       	rcall	.-1218   	; 0x1ae <lcd_print>
+		    lcd_gotoxy(1,2);
+ 670:	62 e0       	ldi	r22, 0x02	; 2
+ 672:	8c 2f       	mov	r24, r28
+ 674:	7a dd       	rcall	.-1292   	; 0x16a <lcd_gotoxy>
+		    lcd_print("Press to stop");
+ 676:	84 ea       	ldi	r24, 0xA4	; 164
+ 678:	90 e0       	ldi	r25, 0x00	; 0
+ 67a:	99 dd       	rcall	.-1230   	; 0x1ae <lcd_print>
+		    if((PIND & (1<<PIND0))==0){
+ 67c:	80 99       	sbic	0x10, 0	; 16
+ 67e:	09 c0       	rjmp	.+18     	; 0x692 <beeping_alarm+0x118>
+			    alarm_2_state = off;
+ 680:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 684:	80 93 29 01 	sts	0x0129, r24	; 0x800129 <alarm_2_state>
+				status_of_alarm_2 = deactive;
+ 688:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ 68c:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <status_of_alarm_2>
+ 690:	0a c0       	rjmp	.+20     	; 0x6a6 <beeping_alarm+0x12c>
+				//PORTB &= ~(1<<PORTB0);
+		    }
+			else if((PIND & (1<<PIND1))==0){
+ 692:	81 99       	sbic	0x10, 1	; 16
+ 694:	08 c0       	rjmp	.+16     	; 0x6a6 <beeping_alarm+0x12c>
+				alarm_2_state = off;
+ 696:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 69a:	80 93 29 01 	sts	0x0129, r24	; 0x800129 <alarm_2_state>
+				status_of_alarm_2 = deactive;
+ 69e:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ 6a2:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <status_of_alarm_2>
+ 6a6:	2f ef       	ldi	r18, 0xFF	; 255
+ 6a8:	80 e7       	ldi	r24, 0x70	; 112
+ 6aa:	92 e0       	ldi	r25, 0x02	; 2
+ 6ac:	21 50       	subi	r18, 0x01	; 1
+ 6ae:	80 40       	sbci	r24, 0x00	; 0
+ 6b0:	90 40       	sbci	r25, 0x00	; 0
+ 6b2:	e1 f7       	brne	.-8      	; 0x6ac <beeping_alarm+0x132>
+ 6b4:	00 c0       	rjmp	.+0      	; 0x6b6 <beeping_alarm+0x13c>
+ 6b6:	00 00       	nop
+		PORTB &= ~(1<<PORTB0);
+	}
+	
+    if(alarm_2_state==on){
+	    clear_lcd();
+	    while(((PIND & (1<<PIND0))==1) && (alarm_2_beeping_time==sixty_seconds_not_reached) && (alarm_2_state==on)){
+ 6b8:	80 9b       	sbis	0x10, 0	; 16
+ 6ba:	0c c0       	rjmp	.+24     	; 0x6d4 <beeping_alarm+0x15a>
+ 6bc:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <alarm_2_beeping_time>
+ 6c0:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 6c4:	98 13       	cpse	r25, r24
+ 6c6:	06 c0       	rjmp	.+12     	; 0x6d4 <beeping_alarm+0x15a>
+ 6c8:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <alarm_2_state>
+ 6cc:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <on>
+ 6d0:	98 17       	cp	r25, r24
+ 6d2:	29 f2       	breq	.-118    	; 0x65e <beeping_alarm+0xe4>
+				status_of_alarm_2 = deactive;
+				//PORTB &= ~(1<<PORTB0);
+			}
+		    _delay_ms(100);
+	    }
+	    clear_lcd();
+ 6d4:	83 dd       	rcall	.-1274   	; 0x1dc <clear_lcd>
+	    alarm_2_state = off;
+ 6d6:	80 91 28 01 	lds	r24, 0x0128	; 0x800128 <off>
+ 6da:	80 93 29 01 	sts	0x0129, r24	; 0x800129 <alarm_2_state>
+	    status_of_alarm_2 = deactive;
+ 6de:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ 6e2:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <status_of_alarm_2>
+	   // PORTB |= ~(1<<PORTB0);
+    }
+	PORTB &= ~(1<<PORTB0);
+ 6e6:	c0 98       	cbi	0x18, 0	; 24
+ 6e8:	2f ef       	ldi	r18, 0xFF	; 255
+ 6ea:	82 e5       	ldi	r24, 0x52	; 82
+ 6ec:	97 e0       	ldi	r25, 0x07	; 7
+ 6ee:	21 50       	subi	r18, 0x01	; 1
+ 6f0:	80 40       	sbci	r24, 0x00	; 0
+ 6f2:	90 40       	sbci	r25, 0x00	; 0
+ 6f4:	e1 f7       	brne	.-8      	; 0x6ee <beeping_alarm+0x174>
+ 6f6:	00 c0       	rjmp	.+0      	; 0x6f8 <beeping_alarm+0x17e>
+ 6f8:	00 00       	nop
+    _delay_ms(300);
+	clear_lcd();
+ 6fa:	70 dd       	rcall	.-1312   	; 0x1dc <clear_lcd>
+}
+ 6fc:	cf 91       	pop	r28
+ 6fe:	08 95       	ret
+
+00000700 <main>:
+	lcdData(0x00); //Edit row 8 data
+}
+
+int main(void)
+{
+	init_ports();
+ 700:	89 dd       	rcall	.-1262   	; 0x214 <init_ports>
+	init_timers();
+ 702:	90 dd       	rcall	.-1248   	; 0x224 <init_timers>
+	lcd_init();
+ 704:	f8 dc       	rcall	.-1552   	; 0xf6 <lcd_init>
+	create_symbol();
+ 706:	73 dd       	rcall	.-1306   	; 0x1ee <create_symbol>
+	
+	sei();                 // Enables global interrupts
+ 708:	78 94       	sei
+    {
+		menu_selected = main_menu_selected;
+		while((PIND & (1<<PIND0))==1 && menu_selected==main_menu_selected){
+			beeping_alarm();
+			// Splitting of values into individual digits
+			seconds_zero_val = seconds_counter%10;
+ 70a:	1a e0       	ldi	r17, 0x0A	; 10
+	
+	sei();                 // Enables global interrupts
+	
+    while(1)
+    {
+		menu_selected = main_menu_selected;
+ 70c:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ 710:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+		while((PIND & (1<<PIND0))==1 && menu_selected==main_menu_selected){
+ 714:	80 9b       	sbis	0x10, 0	; 16
+ 716:	6d c0       	rjmp	.+218    	; 0x7f2 <main+0xf2>
+			beeping_alarm();
+ 718:	30 df       	rcall	.-416    	; 0x57a <beeping_alarm>
+			// Splitting of values into individual digits
+			seconds_zero_val = seconds_counter%10;
+ 71a:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <seconds_counter>
+ 71e:	61 2f       	mov	r22, r17
+ 720:	db d3       	rcall	.+1974   	; 0xed8 <__udivmodqi4>
+ 722:	28 2f       	mov	r18, r24
+ 724:	49 2f       	mov	r20, r25
+ 726:	90 93 3b 01 	sts	0x013B, r25	; 0x80013b <seconds_zero_val>
+			seconds_one_val = seconds_counter/10;
+ 72a:	80 93 3a 01 	sts	0x013A, r24	; 0x80013a <seconds_one_val>
+			
+			minutes_zero_val = minutes_counter%10;
+ 72e:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <minutes_counter>
+ 732:	d2 d3       	rcall	.+1956   	; 0xed8 <__udivmodqi4>
+ 734:	e8 2f       	mov	r30, r24
+ 736:	a9 2f       	mov	r26, r25
+ 738:	90 93 36 01 	sts	0x0136, r25	; 0x800136 <minutes_zero_val>
+			minutes_one_val = minutes_counter/10;
+ 73c:	80 93 35 01 	sts	0x0135, r24	; 0x800135 <minutes_one_val>
+			
+			hours_zero_val = hours_counter%10;
+ 740:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 744:	c9 d3       	rcall	.+1938   	; 0xed8 <__udivmodqi4>
+ 746:	90 93 32 01 	sts	0x0132, r25	; 0x800132 <hours_zero_val>
+			hours_one_val = hours_counter/10;
+ 74a:	80 93 31 01 	sts	0x0131, r24	; 0x800131 <hours_one_val>
+			
+			// Conversion of values to ASCII code
+			seconds_zero = DISPLAY[seconds_zero_val];
+ 74e:	50 e0       	ldi	r21, 0x00	; 0
+ 750:	48 58       	subi	r20, 0x88	; 136
+ 752:	5f 4f       	sbci	r21, 0xFF	; 255
+ 754:	ea 01       	movw	r28, r20
+ 756:	38 81       	ld	r19, Y
+ 758:	30 93 39 01 	sts	0x0139, r19	; 0x800139 <seconds_zero>
+			seconds_one =  DISPLAY[seconds_one_val];
+ 75c:	30 e0       	ldi	r19, 0x00	; 0
+ 75e:	28 58       	subi	r18, 0x88	; 136
+ 760:	3f 4f       	sbci	r19, 0xFF	; 255
+ 762:	e9 01       	movw	r28, r18
+ 764:	28 81       	ld	r18, Y
+ 766:	20 93 38 01 	sts	0x0138, r18	; 0x800138 <seconds_one>
+			
+			minutes_zero = DISPLAY[minutes_zero_val];
+ 76a:	b0 e0       	ldi	r27, 0x00	; 0
+ 76c:	a8 58       	subi	r26, 0x88	; 136
+ 76e:	bf 4f       	sbci	r27, 0xFF	; 255
+ 770:	2c 91       	ld	r18, X
+ 772:	20 93 34 01 	sts	0x0134, r18	; 0x800134 <minutes_zero>
+			minutes_one = DISPLAY[minutes_one_val];
+ 776:	f0 e0       	ldi	r31, 0x00	; 0
+ 778:	e8 58       	subi	r30, 0x88	; 136
+ 77a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 77c:	20 81       	ld	r18, Z
+ 77e:	20 93 33 01 	sts	0x0133, r18	; 0x800133 <minutes_one>
+			
+			hours_zero = DISPLAY[hours_zero_val];
+ 782:	e9 2f       	mov	r30, r25
+ 784:	f0 e0       	ldi	r31, 0x00	; 0
+ 786:	e8 58       	subi	r30, 0x88	; 136
+ 788:	ff 4f       	sbci	r31, 0xFF	; 255
+ 78a:	90 81       	ld	r25, Z
+ 78c:	90 93 30 01 	sts	0x0130, r25	; 0x800130 <hours_zero>
+			hours_one = DISPLAY[hours_one_val];
+ 790:	e8 2f       	mov	r30, r24
+ 792:	f0 e0       	ldi	r31, 0x00	; 0
+ 794:	e8 58       	subi	r30, 0x88	; 136
+ 796:	ff 4f       	sbci	r31, 0xFF	; 255
+ 798:	80 81       	ld	r24, Z
+ 79a:	80 93 2f 01 	sts	0x012F, r24	; 0x80012f <hours_one>
+			
+			lcd_gotoxy(1,1);
+ 79e:	61 e0       	ldi	r22, 0x01	; 1
+ 7a0:	81 e0       	ldi	r24, 0x01	; 1
+ 7a2:	e3 dc       	rcall	.-1594   	; 0x16a <lcd_gotoxy>
+			lcdData(hours_one);
+ 7a4:	80 91 2f 01 	lds	r24, 0x012F	; 0x80012f <hours_one>
+ 7a8:	81 dc       	rcall	.-1790   	; 0xac <lcdData>
+			lcdData(hours_zero);
+ 7aa:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <hours_zero>
+ 7ae:	7e dc       	rcall	.-1796   	; 0xac <lcdData>
+			lcd_print(":");
+ 7b0:	82 e8       	ldi	r24, 0x82	; 130
+ 7b2:	90 e0       	ldi	r25, 0x00	; 0
+ 7b4:	fc dc       	rcall	.-1544   	; 0x1ae <lcd_print>
+			lcdData(minutes_one);
+ 7b6:	80 91 33 01 	lds	r24, 0x0133	; 0x800133 <minutes_one>
+ 7ba:	78 dc       	rcall	.-1808   	; 0xac <lcdData>
+			lcdData(minutes_zero);
+ 7bc:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <minutes_zero>
+ 7c0:	75 dc       	rcall	.-1814   	; 0xac <lcdData>
+			lcd_print(":");
+ 7c2:	82 e8       	ldi	r24, 0x82	; 130
+ 7c4:	90 e0       	ldi	r25, 0x00	; 0
+ 7c6:	f3 dc       	rcall	.-1562   	; 0x1ae <lcd_print>
+			lcdData(seconds_one);
+ 7c8:	80 91 38 01 	lds	r24, 0x0138	; 0x800138 <seconds_one>
+ 7cc:	6f dc       	rcall	.-1826   	; 0xac <lcdData>
+			lcdData(seconds_zero);
+ 7ce:	80 91 39 01 	lds	r24, 0x0139	; 0x800139 <seconds_zero>
+ 7d2:	6c dc       	rcall	.-1832   	; 0xac <lcdData>
+			lcd_gotoxy(1,2);
+ 7d4:	62 e0       	ldi	r22, 0x02	; 2
+ 7d6:	81 e0       	ldi	r24, 0x01	; 1
+ 7d8:	c8 dc       	rcall	.-1648   	; 0x16a <lcd_gotoxy>
+			lcd_print("HR MN SEC");
+ 7da:	82 eb       	ldi	r24, 0xB2	; 178
+ 7dc:	90 e0       	ldi	r25, 0x00	; 0
+ 7de:	e7 dc       	rcall	.-1586   	; 0x1ae <lcd_print>
+	sei();                 // Enables global interrupts
+	
+    while(1)
+    {
+		menu_selected = main_menu_selected;
+		while((PIND & (1<<PIND0))==1 && menu_selected==main_menu_selected){
+ 7e0:	80 9b       	sbis	0x10, 0	; 16
+ 7e2:	07 c0       	rjmp	.+14     	; 0x7f2 <main+0xf2>
+ 7e4:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ 7e8:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ 7ec:	98 17       	cp	r25, r24
+ 7ee:	09 f4       	brne	.+2      	; 0x7f2 <main+0xf2>
+ 7f0:	93 cf       	rjmp	.-218    	; 0x718 <main+0x18>
+			lcdData(seconds_zero);
+			lcd_gotoxy(1,2);
+			lcd_print("HR MN SEC");
+			//PORTB |= ~(1<<PORTB0);
+		}
+		if(alarm_1_state==off && alarm_2_state==off){
+ 7f2:	80 91 2a 01 	lds	r24, 0x012A	; 0x80012a <alarm_1_state>
+ 7f6:	90 91 28 01 	lds	r25, 0x0128	; 0x800128 <off>
+ 7fa:	89 13       	cpse	r24, r25
+ 7fc:	61 c3       	rjmp	.+1730   	; 0xec0 <main+0x7c0>
+ 7fe:	90 91 29 01 	lds	r25, 0x0129	; 0x800129 <alarm_2_state>
+ 802:	89 13       	cpse	r24, r25
+ 804:	5d c3       	rjmp	.+1722   	; 0xec0 <main+0x7c0>
+			//if((PIND & (1<<PIND0))==0){
+			clear_lcd();
+ 806:	ea dc       	rcall	.-1580   	; 0x1dc <clear_lcd>
+			lcd_gotoxy(1,1);
+ 808:	61 e0       	ldi	r22, 0x01	; 1
+ 80a:	81 e0       	ldi	r24, 0x01	; 1
+ 80c:	ae dc       	rcall	.-1700   	; 0x16a <lcd_gotoxy>
+			lcd_print("Click to update");
+ 80e:	8c eb       	ldi	r24, 0xBC	; 188
+ 810:	90 e0       	ldi	r25, 0x00	; 0
+ 812:	cd dc       	rcall	.-1638   	; 0x1ae <lcd_print>
+			lcd_gotoxy(1,2);
+ 814:	62 e0       	ldi	r22, 0x02	; 2
+ 816:	81 e0       	ldi	r24, 0x01	; 1
+ 818:	a8 dc       	rcall	.-1712   	; 0x16a <lcd_gotoxy>
+			lcd_print("Time");
+ 81a:	87 e8       	ldi	r24, 0x87	; 135
+ 81c:	90 e0       	ldi	r25, 0x00	; 0
+ 81e:	c7 dc       	rcall	.-1650   	; 0x1ae <lcd_print>
+ 820:	df ef       	ldi	r29, 0xFF	; 255
+ 822:	24 e3       	ldi	r18, 0x34	; 52
+ 824:	8c e0       	ldi	r24, 0x0C	; 12
+ 826:	d1 50       	subi	r29, 0x01	; 1
+ 828:	20 40       	sbci	r18, 0x00	; 0
+ 82a:	80 40       	sbci	r24, 0x00	; 0
+ 82c:	e1 f7       	brne	.-8      	; 0x826 <main+0x126>
+ 82e:	00 c0       	rjmp	.+0      	; 0x830 <main+0x130>
+ 830:	00 00       	nop
+			//}
+			_delay_ms(500);
+			//while((PIND & (1<<PIND0))==1 && (PIND & (1<<PIND1))==1);
+			while(PIND==0b00000011);
+ 832:	80 b3       	in	r24, 0x10	; 16
+ 834:	83 30       	cpi	r24, 0x03	; 3
+ 836:	e9 f3       	breq	.-6      	; 0x832 <main+0x132>
+			//while((PIND & (1<<PIND0))==1);
+			//_delay_ms(30);
+			/////////////////////////////////////////////////////////////////////
+			// Set Time Menu Option
+			/////////////////////////////////////////////////////////////////////
+			if((PIND & (1<<PIND1))==0){
+ 838:	81 99       	sbic	0x10, 1	; 16
+ 83a:	e8 c0       	rjmp	.+464    	; 0xa0c <main+0x30c>
+				menu_selected = setTime_menu;
+ 83c:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <setTime_menu>
+ 840:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+				time_settings_menu = setTime_hour_highlighted;
+ 844:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <setTime_hour_highlighted>
+ 848:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <time_settings_menu>
+				TIMSK &= 0xFF^(1<<OCIE1A);
+ 84c:	89 b7       	in	r24, 0x39	; 57
+ 84e:	8f 7b       	andi	r24, 0xBF	; 191
+ 850:	89 bf       	out	0x39, r24	; 57
+ 852:	9f ef       	ldi	r25, 0xFF	; 255
+ 854:	c2 e5       	ldi	r28, 0x52	; 82
+ 856:	d7 e0       	ldi	r29, 0x07	; 7
+ 858:	91 50       	subi	r25, 0x01	; 1
+ 85a:	c0 40       	sbci	r28, 0x00	; 0
+ 85c:	d0 40       	sbci	r29, 0x00	; 0
+ 85e:	e1 f7       	brne	.-8      	; 0x858 <main+0x158>
+ 860:	00 c0       	rjmp	.+0      	; 0x862 <main+0x162>
+ 862:	00 00       	nop
+				_delay_ms(300);
+				clear_lcd();
+ 864:	bb dc       	rcall	.-1674   	; 0x1dc <clear_lcd>
+				//_delay_ms(300);
+				while(menu_selected==setTime_menu){
+ 866:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ 86a:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <setTime_menu>
+ 86e:	98 17       	cp	r25, r24
+ 870:	09 f4       	brne	.+2      	; 0x874 <main+0x174>
+ 872:	c0 c0       	rjmp	.+384    	; 0x9f4 <main+0x2f4>
+ 874:	c7 c0       	rjmp	.+398    	; 0xa04 <main+0x304>
+					while(time_settings_menu==setTime_hour_highlighted){
+						displayTime();
+ 876:	94 dd       	rcall	.-1240   	; 0x3a0 <displayTime>
+						lcd_gotoxy(1,2);
+ 878:	62 e0       	ldi	r22, 0x02	; 2
+ 87a:	81 e0       	ldi	r24, 0x01	; 1
+ 87c:	76 dc       	rcall	.-1812   	; 0x16a <lcd_gotoxy>
+						lcd_print("^^");
+ 87e:	8c ec       	ldi	r24, 0xCC	; 204
+ 880:	90 e0       	ldi	r25, 0x00	; 0
+ 882:	95 dc       	rcall	.-1750   	; 0x1ae <lcd_print>
+						while(PIND==0b00000011);
+ 884:	80 b3       	in	r24, 0x10	; 16
+ 886:	83 30       	cpi	r24, 0x03	; 3
+ 888:	e9 f3       	breq	.-6      	; 0x884 <main+0x184>
+						if((PIND & (1<<PIND1))==0){
+ 88a:	81 99       	sbic	0x10, 1	; 16
+ 88c:	0b c0       	rjmp	.+22     	; 0x8a4 <main+0x1a4>
+							if(hours_counter==23){
+ 88e:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <hours_counter>
+ 892:	87 31       	cpi	r24, 0x17	; 23
+ 894:	19 f4       	brne	.+6      	; 0x89c <main+0x19c>
+								hours_counter = 0;
+ 896:	10 92 77 00 	sts	0x0077, r1	; 0x800077 <hours_counter>
+ 89a:	08 c0       	rjmp	.+16     	; 0x8ac <main+0x1ac>
+							}
+							else{
+								hours_counter++;
+ 89c:	8f 5f       	subi	r24, 0xFF	; 255
+ 89e:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <hours_counter>
+ 8a2:	04 c0       	rjmp	.+8      	; 0x8ac <main+0x1ac>
+							}
+							
+						}
+						else
+						{
+							time_settings_menu = setTime_minute_highlighted;
+ 8a4:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <setTime_minute_highlighted>
+ 8a8:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <time_settings_menu>
+ 8ac:	2f ef       	ldi	r18, 0xFF	; 255
+ 8ae:	82 e5       	ldi	r24, 0x52	; 82
+ 8b0:	97 e0       	ldi	r25, 0x07	; 7
+ 8b2:	21 50       	subi	r18, 0x01	; 1
+ 8b4:	80 40       	sbci	r24, 0x00	; 0
+ 8b6:	90 40       	sbci	r25, 0x00	; 0
+ 8b8:	e1 f7       	brne	.-8      	; 0x8b2 <main+0x1b2>
+ 8ba:	00 c0       	rjmp	.+0      	; 0x8bc <main+0x1bc>
+ 8bc:	00 00       	nop
+				TIMSK &= 0xFF^(1<<OCIE1A);
+				_delay_ms(300);
+				clear_lcd();
+				//_delay_ms(300);
+				while(menu_selected==setTime_menu){
+					while(time_settings_menu==setTime_hour_highlighted){
+ 8be:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 8c2:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <setTime_hour_highlighted>
+ 8c6:	98 17       	cp	r25, r24
+ 8c8:	b1 f2       	breq	.-84     	; 0x876 <main+0x176>
+						{
+							time_settings_menu = setTime_minute_highlighted;
+						}
+						_delay_ms(300);
+					}
+					clear_lcd();
+ 8ca:	88 dc       	rcall	.-1776   	; 0x1dc <clear_lcd>
+					while(time_settings_menu==setTime_minute_highlighted){
+ 8cc:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 8d0:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <setTime_minute_highlighted>
+ 8d4:	98 13       	cpse	r25, r24
+ 8d6:	2a c0       	rjmp	.+84     	; 0x92c <main+0x22c>
+						displayTime();
+ 8d8:	63 dd       	rcall	.-1338   	; 0x3a0 <displayTime>
+						lcd_gotoxy(4,2);
+ 8da:	62 e0       	ldi	r22, 0x02	; 2
+ 8dc:	84 e0       	ldi	r24, 0x04	; 4
+ 8de:	45 dc       	rcall	.-1910   	; 0x16a <lcd_gotoxy>
+						lcd_print("^^");
+ 8e0:	8c ec       	ldi	r24, 0xCC	; 204
+ 8e2:	90 e0       	ldi	r25, 0x00	; 0
+ 8e4:	64 dc       	rcall	.-1848   	; 0x1ae <lcd_print>
+						while(PIND==0b00000011);
+ 8e6:	80 b3       	in	r24, 0x10	; 16
+ 8e8:	83 30       	cpi	r24, 0x03	; 3
+ 8ea:	e9 f3       	breq	.-6      	; 0x8e6 <main+0x1e6>
+						if((PIND & (1<<PIND1))==0){
+ 8ec:	81 99       	sbic	0x10, 1	; 16
+ 8ee:	0b c0       	rjmp	.+22     	; 0x906 <main+0x206>
+							if(minutes_counter==59){
+ 8f0:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <minutes_counter>
+ 8f4:	8b 33       	cpi	r24, 0x3B	; 59
+ 8f6:	19 f4       	brne	.+6      	; 0x8fe <main+0x1fe>
+								minutes_counter = 0;
+ 8f8:	10 92 37 01 	sts	0x0137, r1	; 0x800137 <minutes_counter>
+ 8fc:	08 c0       	rjmp	.+16     	; 0x90e <main+0x20e>
+							}
+							else{
+								minutes_counter++;
+ 8fe:	8f 5f       	subi	r24, 0xFF	; 255
+ 900:	80 93 37 01 	sts	0x0137, r24	; 0x800137 <minutes_counter>
+ 904:	04 c0       	rjmp	.+8      	; 0x90e <main+0x20e>
+							}
+							
+						}
+						else
+						{
+							time_settings_menu = setTime_second_highlighted;
+ 906:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <setTime_second_highlighted>
+ 90a:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <time_settings_menu>
+ 90e:	cf ef       	ldi	r28, 0xFF	; 255
+ 910:	d2 e5       	ldi	r29, 0x52	; 82
+ 912:	27 e0       	ldi	r18, 0x07	; 7
+ 914:	c1 50       	subi	r28, 0x01	; 1
+ 916:	d0 40       	sbci	r29, 0x00	; 0
+ 918:	20 40       	sbci	r18, 0x00	; 0
+ 91a:	e1 f7       	brne	.-8      	; 0x914 <main+0x214>
+ 91c:	00 c0       	rjmp	.+0      	; 0x91e <main+0x21e>
+ 91e:	00 00       	nop
+							time_settings_menu = setTime_minute_highlighted;
+						}
+						_delay_ms(300);
+					}
+					clear_lcd();
+					while(time_settings_menu==setTime_minute_highlighted){
+ 920:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 924:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <setTime_minute_highlighted>
+ 928:	98 17       	cp	r25, r24
+ 92a:	b1 f2       	breq	.-84     	; 0x8d8 <main+0x1d8>
+						{
+							time_settings_menu = setTime_second_highlighted;
+						}
+						_delay_ms(300);
+					}
+					clear_lcd();
+ 92c:	57 dc       	rcall	.-1874   	; 0x1dc <clear_lcd>
+					while(time_settings_menu==setTime_second_highlighted){
+ 92e:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 932:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <setTime_second_highlighted>
+ 936:	98 13       	cpse	r25, r24
+ 938:	2a c0       	rjmp	.+84     	; 0x98e <main+0x28e>
+						displayTime();
+ 93a:	32 dd       	rcall	.-1436   	; 0x3a0 <displayTime>
+						lcd_gotoxy(7,2);
+ 93c:	62 e0       	ldi	r22, 0x02	; 2
+ 93e:	87 e0       	ldi	r24, 0x07	; 7
+ 940:	14 dc       	rcall	.-2008   	; 0x16a <lcd_gotoxy>
+						lcd_print("^^");
+ 942:	8c ec       	ldi	r24, 0xCC	; 204
+ 944:	90 e0       	ldi	r25, 0x00	; 0
+ 946:	33 dc       	rcall	.-1946   	; 0x1ae <lcd_print>
+						while(PIND==0b00000011);
+ 948:	80 b3       	in	r24, 0x10	; 16
+ 94a:	83 30       	cpi	r24, 0x03	; 3
+ 94c:	e9 f3       	breq	.-6      	; 0x948 <main+0x248>
+						if((PIND & (1<<PIND1))==0){
+ 94e:	81 99       	sbic	0x10, 1	; 16
+ 950:	0b c0       	rjmp	.+22     	; 0x968 <main+0x268>
+							if(seconds_counter==59){
+ 952:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <seconds_counter>
+ 956:	8b 33       	cpi	r24, 0x3B	; 59
+ 958:	19 f4       	brne	.+6      	; 0x960 <main+0x260>
+								seconds_counter = 0;
+ 95a:	10 92 3c 01 	sts	0x013C, r1	; 0x80013c <seconds_counter>
+ 95e:	08 c0       	rjmp	.+16     	; 0x970 <main+0x270>
+							}
+							else{
+								seconds_counter++;
+ 960:	8f 5f       	subi	r24, 0xFF	; 255
+ 962:	80 93 3c 01 	sts	0x013C, r24	; 0x80013c <seconds_counter>
+ 966:	04 c0       	rjmp	.+8      	; 0x970 <main+0x270>
+							}
+							
+						}
+						else
+						{
+							time_settings_menu = setTime_set_time_highlighted;
+ 968:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <setTime_set_time_highlighted>
+ 96c:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <time_settings_menu>
+ 970:	8f ef       	ldi	r24, 0xFF	; 255
+ 972:	92 e5       	ldi	r25, 0x52	; 82
+ 974:	c7 e0       	ldi	r28, 0x07	; 7
+ 976:	81 50       	subi	r24, 0x01	; 1
+ 978:	90 40       	sbci	r25, 0x00	; 0
+ 97a:	c0 40       	sbci	r28, 0x00	; 0
+ 97c:	e1 f7       	brne	.-8      	; 0x976 <main+0x276>
+ 97e:	00 c0       	rjmp	.+0      	; 0x980 <main+0x280>
+ 980:	00 00       	nop
+							time_settings_menu = setTime_second_highlighted;
+						}
+						_delay_ms(300);
+					}
+					clear_lcd();
+					while(time_settings_menu==setTime_second_highlighted){
+ 982:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 986:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <setTime_second_highlighted>
+ 98a:	98 17       	cp	r25, r24
+ 98c:	b1 f2       	breq	.-84     	; 0x93a <main+0x23a>
+						{
+							time_settings_menu = setTime_set_time_highlighted;
+						}
+						_delay_ms(300);
+					}
+					clear_lcd();
+ 98e:	26 dc       	rcall	.-1972   	; 0x1dc <clear_lcd>
+					while(time_settings_menu==setTime_set_time_highlighted && menu_selected==setTime_menu){
+ 990:	15 c0       	rjmp	.+42     	; 0x9bc <main+0x2bc>
+						displayTime();
+ 992:	06 dd       	rcall	.-1524   	; 0x3a0 <displayTime>
+						lcd_gotoxy(10,2);
+ 994:	62 e0       	ldi	r22, 0x02	; 2
+ 996:	81 2f       	mov	r24, r17
+ 998:	e8 db       	rcall	.-2096   	; 0x16a <lcd_gotoxy>
+						lcd_print("^^");
+ 99a:	8c ec       	ldi	r24, 0xCC	; 204
+ 99c:	90 e0       	ldi	r25, 0x00	; 0
+ 99e:	07 dc       	rcall	.-2034   	; 0x1ae <lcd_print>
+						while(PIND==0b00000011);
+ 9a0:	80 b3       	in	r24, 0x10	; 16
+ 9a2:	83 30       	cpi	r24, 0x03	; 3
+ 9a4:	e9 f3       	breq	.-6      	; 0x9a0 <main+0x2a0>
+						if((PIND & (1<<PIND1))==0){
+ 9a6:	81 99       	sbic	0x10, 1	; 16
+ 9a8:	05 c0       	rjmp	.+10     	; 0x9b4 <main+0x2b4>
+							menu_selected = main_menu_selected;
+ 9aa:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ 9ae:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+ 9b2:	04 c0       	rjmp	.+8      	; 0x9bc <main+0x2bc>
+							//TIMSK = 1<<OCIE1A;
+						}
+						else{
+							time_settings_menu = setTime_hour_highlighted;
+ 9b4:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <setTime_hour_highlighted>
+ 9b8:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <time_settings_menu>
+							time_settings_menu = setTime_set_time_highlighted;
+						}
+						_delay_ms(300);
+					}
+					clear_lcd();
+					while(time_settings_menu==setTime_set_time_highlighted && menu_selected==setTime_menu){
+ 9bc:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 9c0:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <setTime_set_time_highlighted>
+ 9c4:	98 13       	cpse	r25, r24
+ 9c6:	06 c0       	rjmp	.+12     	; 0x9d4 <main+0x2d4>
+ 9c8:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ 9cc:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <setTime_menu>
+ 9d0:	98 17       	cp	r25, r24
+ 9d2:	f9 f2       	breq	.-66     	; 0x992 <main+0x292>
+ 9d4:	df ef       	ldi	r29, 0xFF	; 255
+ 9d6:	22 e5       	ldi	r18, 0x52	; 82
+ 9d8:	87 e0       	ldi	r24, 0x07	; 7
+ 9da:	d1 50       	subi	r29, 0x01	; 1
+ 9dc:	20 40       	sbci	r18, 0x00	; 0
+ 9de:	80 40       	sbci	r24, 0x00	; 0
+ 9e0:	e1 f7       	brne	.-8      	; 0x9da <main+0x2da>
+ 9e2:	00 c0       	rjmp	.+0      	; 0x9e4 <main+0x2e4>
+ 9e4:	00 00       	nop
+						else{
+							time_settings_menu = setTime_hour_highlighted;
+						}
+					}
+					_delay_ms(300);
+					clear_lcd();
+ 9e6:	fa db       	rcall	.-2060   	; 0x1dc <clear_lcd>
+				time_settings_menu = setTime_hour_highlighted;
+				TIMSK &= 0xFF^(1<<OCIE1A);
+				_delay_ms(300);
+				clear_lcd();
+				//_delay_ms(300);
+				while(menu_selected==setTime_menu){
+ 9e8:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ 9ec:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <setTime_menu>
+ 9f0:	98 13       	cpse	r25, r24
+ 9f2:	08 c0       	rjmp	.+16     	; 0xa04 <main+0x304>
+					while(time_settings_menu==setTime_hour_highlighted){
+ 9f4:	90 91 22 01 	lds	r25, 0x0122	; 0x800122 <time_settings_menu>
+ 9f8:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <setTime_hour_highlighted>
+ 9fc:	98 17       	cp	r25, r24
+ 9fe:	09 f4       	brne	.+2      	; 0xa02 <main+0x302>
+ a00:	3a cf       	rjmp	.-396    	; 0x876 <main+0x176>
+ a02:	63 cf       	rjmp	.-314    	; 0x8ca <main+0x1ca>
+						}
+					}
+					_delay_ms(300);
+					clear_lcd();
+				}
+				TIMSK |= 1<<OCIE1A;
+ a04:	89 b7       	in	r24, 0x39	; 57
+ a06:	80 64       	ori	r24, 0x40	; 64
+ a08:	89 bf       	out	0x39, r24	; 57
+ a0a:	5b c2       	rjmp	.+1206   	; 0xec2 <main+0x7c2>
+			}
+			/////////////////////////////////////////////////////////////////////
+			//else if((PIND & (1<<PIND0))==0){
+			else{
+				clear_lcd();
+ a0c:	e7 db       	rcall	.-2098   	; 0x1dc <clear_lcd>
+				lcd_gotoxy(1,1);
+ a0e:	61 e0       	ldi	r22, 0x01	; 1
+ a10:	81 e0       	ldi	r24, 0x01	; 1
+ a12:	ab db       	rcall	.-2218   	; 0x16a <lcd_gotoxy>
+				lcd_print("Click to update");
+ a14:	8c eb       	ldi	r24, 0xBC	; 188
+ a16:	90 e0       	ldi	r25, 0x00	; 0
+ a18:	ca db       	rcall	.-2156   	; 0x1ae <lcd_print>
+				lcd_gotoxy(1,2);
+ a1a:	62 e0       	ldi	r22, 0x02	; 2
+ a1c:	81 e0       	ldi	r24, 0x01	; 1
+ a1e:	a5 db       	rcall	.-2230   	; 0x16a <lcd_gotoxy>
+				lcd_print("Alarm 1");
+ a20:	8f ec       	ldi	r24, 0xCF	; 207
+ a22:	90 e0       	ldi	r25, 0x00	; 0
+ a24:	c4 db       	rcall	.-2168   	; 0x1ae <lcd_print>
+ a26:	9f ef       	ldi	r25, 0xFF	; 255
+ a28:	c2 e5       	ldi	r28, 0x52	; 82
+ a2a:	d7 e0       	ldi	r29, 0x07	; 7
+ a2c:	91 50       	subi	r25, 0x01	; 1
+ a2e:	c0 40       	sbci	r28, 0x00	; 0
+ a30:	d0 40       	sbci	r29, 0x00	; 0
+ a32:	e1 f7       	brne	.-8      	; 0xa2c <main+0x32c>
+ a34:	00 c0       	rjmp	.+0      	; 0xa36 <main+0x336>
+ a36:	00 00       	nop
+				_delay_ms(300);
+				////////////////////////////////////////////////////////////////////
+				// Set Alarm 1 Menu Option
+				////////////////////////////////////////////////////////////////////
+				while(PIND==0b00000011);
+ a38:	80 b3       	in	r24, 0x10	; 16
+ a3a:	83 30       	cpi	r24, 0x03	; 3
+ a3c:	e9 f3       	breq	.-6      	; 0xa38 <main+0x338>
+				//_delay_ms(300);
+				if((PIND & (1<<PIND1))==0){
+ a3e:	81 99       	sbic	0x10, 1	; 16
+ a40:	11 c1       	rjmp	.+546    	; 0xc64 <main+0x564>
+ a42:	2f ef       	ldi	r18, 0xFF	; 255
+ a44:	82 e5       	ldi	r24, 0x52	; 82
+ a46:	97 e0       	ldi	r25, 0x07	; 7
+ a48:	21 50       	subi	r18, 0x01	; 1
+ a4a:	80 40       	sbci	r24, 0x00	; 0
+ a4c:	90 40       	sbci	r25, 0x00	; 0
+ a4e:	e1 f7       	brne	.-8      	; 0xa48 <main+0x348>
+ a50:	00 c0       	rjmp	.+0      	; 0xa52 <main+0x352>
+ a52:	00 00       	nop
+					_delay_ms(300);
+					clear_lcd();
+ a54:	c3 db       	rcall	.-2170   	; 0x1dc <clear_lcd>
+					menu_selected = alarm_1_menu;
+ a56:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <alarm_1_menu>
+ a5a:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+					alarm_1_settings_menu = alarm_1_hour_highlighted;
+ a5e:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <alarm_1_hour_highlighted>
+ a62:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <alarm_1_settings_menu>
+ a66:	f6 c0       	rjmp	.+492    	; 0xc54 <main+0x554>
+					while(menu_selected==alarm_1_menu){
+						while(alarm_1_settings_menu==alarm_1_hour_highlighted){
+							display_alarm_1_time();
+ a68:	04 dd       	rcall	.-1528   	; 0x472 <display_alarm_1_time>
+							lcd_gotoxy(1,2);
+ a6a:	62 e0       	ldi	r22, 0x02	; 2
+ a6c:	81 e0       	ldi	r24, 0x01	; 1
+ a6e:	7d db       	rcall	.-2310   	; 0x16a <lcd_gotoxy>
+							lcd_print("^^");
+ a70:	8c ec       	ldi	r24, 0xCC	; 204
+ a72:	90 e0       	ldi	r25, 0x00	; 0
+ a74:	9c db       	rcall	.-2248   	; 0x1ae <lcd_print>
+							while(PIND==0b00000011);
+ a76:	80 b3       	in	r24, 0x10	; 16
+ a78:	83 30       	cpi	r24, 0x03	; 3
+ a7a:	e9 f3       	breq	.-6      	; 0xa76 <main+0x376>
+							if((PIND & (1<<PIND1))==0){
+ a7c:	81 99       	sbic	0x10, 1	; 16
+ a7e:	0f c0       	rjmp	.+30     	; 0xa9e <main+0x39e>
+								if(alarm_1_hour_counter==23){
+ a80:	80 91 2e 01 	lds	r24, 0x012E	; 0x80012e <alarm_1_hour_counter>
+ a84:	87 31       	cpi	r24, 0x17	; 23
+ a86:	19 f4       	brne	.+6      	; 0xa8e <main+0x38e>
+									alarm_1_hour_counter = 0;
+ a88:	10 92 2e 01 	sts	0x012E, r1	; 0x80012e <alarm_1_hour_counter>
+ a8c:	03 c0       	rjmp	.+6      	; 0xa94 <main+0x394>
+								}
+								else{
+									alarm_1_hour_counter++;
+ a8e:	8f 5f       	subi	r24, 0xFF	; 255
+ a90:	80 93 2e 01 	sts	0x012E, r24	; 0x80012e <alarm_1_hour_counter>
+								}
+								current_alarm_1_hour_counter = alarm_1_hour_counter;
+ a94:	80 91 2e 01 	lds	r24, 0x012E	; 0x80012e <alarm_1_hour_counter>
+ a98:	80 93 1b 01 	sts	0x011B, r24	; 0x80011b <current_alarm_1_hour_counter>
+ a9c:	04 c0       	rjmp	.+8      	; 0xaa6 <main+0x3a6>
+							}
+							else{
+								alarm_1_settings_menu = alarm_1_minute_highlighted;
+ a9e:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <alarm_1_minute_highlighted>
+ aa2:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <alarm_1_settings_menu>
+ aa6:	cf ef       	ldi	r28, 0xFF	; 255
+ aa8:	d2 e5       	ldi	r29, 0x52	; 82
+ aaa:	27 e0       	ldi	r18, 0x07	; 7
+ aac:	c1 50       	subi	r28, 0x01	; 1
+ aae:	d0 40       	sbci	r29, 0x00	; 0
+ ab0:	20 40       	sbci	r18, 0x00	; 0
+ ab2:	e1 f7       	brne	.-8      	; 0xaac <main+0x3ac>
+ ab4:	00 c0       	rjmp	.+0      	; 0xab6 <main+0x3b6>
+ ab6:	00 00       	nop
+					_delay_ms(300);
+					clear_lcd();
+					menu_selected = alarm_1_menu;
+					alarm_1_settings_menu = alarm_1_hour_highlighted;
+					while(menu_selected==alarm_1_menu){
+						while(alarm_1_settings_menu==alarm_1_hour_highlighted){
+ ab8:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ abc:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <alarm_1_hour_highlighted>
+ ac0:	98 17       	cp	r25, r24
+ ac2:	91 f2       	breq	.-92     	; 0xa68 <main+0x368>
+							else{
+								alarm_1_settings_menu = alarm_1_minute_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+ ac4:	8b db       	rcall	.-2282   	; 0x1dc <clear_lcd>
+						while(alarm_1_settings_menu==alarm_1_minute_highlighted){
+ ac6:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ aca:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <alarm_1_minute_highlighted>
+ ace:	98 13       	cpse	r25, r24
+ ad0:	2e c0       	rjmp	.+92     	; 0xb2e <main+0x42e>
+							display_alarm_1_time();
+ ad2:	cf dc       	rcall	.-1634   	; 0x472 <display_alarm_1_time>
+							lcd_gotoxy(4,2);
+ ad4:	62 e0       	ldi	r22, 0x02	; 2
+ ad6:	84 e0       	ldi	r24, 0x04	; 4
+ ad8:	48 db       	rcall	.-2416   	; 0x16a <lcd_gotoxy>
+							lcd_print("^^");
+ ada:	8c ec       	ldi	r24, 0xCC	; 204
+ adc:	90 e0       	ldi	r25, 0x00	; 0
+ ade:	67 db       	rcall	.-2354   	; 0x1ae <lcd_print>
+							while(PIND==0b00000011);
+ ae0:	80 b3       	in	r24, 0x10	; 16
+ ae2:	83 30       	cpi	r24, 0x03	; 3
+ ae4:	e9 f3       	breq	.-6      	; 0xae0 <main+0x3e0>
+							if((PIND & (1<<PIND1))==0){
+ ae6:	81 99       	sbic	0x10, 1	; 16
+ ae8:	0f c0       	rjmp	.+30     	; 0xb08 <main+0x408>
+								if(alarm_1_minute_counter==59){
+ aea:	80 91 2d 01 	lds	r24, 0x012D	; 0x80012d <alarm_1_minute_counter>
+ aee:	8b 33       	cpi	r24, 0x3B	; 59
+ af0:	19 f4       	brne	.+6      	; 0xaf8 <main+0x3f8>
+									alarm_1_minute_counter = 0;
+ af2:	10 92 2d 01 	sts	0x012D, r1	; 0x80012d <alarm_1_minute_counter>
+ af6:	03 c0       	rjmp	.+6      	; 0xafe <main+0x3fe>
+								}
+								else{
+									alarm_1_minute_counter++;
+ af8:	8f 5f       	subi	r24, 0xFF	; 255
+ afa:	80 93 2d 01 	sts	0x012D, r24	; 0x80012d <alarm_1_minute_counter>
+								}
+								current_alarm_1_minute_counter = alarm_1_minute_counter;
+ afe:	80 91 2d 01 	lds	r24, 0x012D	; 0x80012d <alarm_1_minute_counter>
+ b02:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <current_alarm_1_minute_counter>
+ b06:	04 c0       	rjmp	.+8      	; 0xb10 <main+0x410>
+							}
+							else{
+								alarm_1_settings_menu = alarm_1_set_highlighted;
+ b08:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <alarm_1_set_highlighted>
+ b0c:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <alarm_1_settings_menu>
+ b10:	8f ef       	ldi	r24, 0xFF	; 255
+ b12:	92 e5       	ldi	r25, 0x52	; 82
+ b14:	c7 e0       	ldi	r28, 0x07	; 7
+ b16:	81 50       	subi	r24, 0x01	; 1
+ b18:	90 40       	sbci	r25, 0x00	; 0
+ b1a:	c0 40       	sbci	r28, 0x00	; 0
+ b1c:	e1 f7       	brne	.-8      	; 0xb16 <main+0x416>
+ b1e:	00 c0       	rjmp	.+0      	; 0xb20 <main+0x420>
+ b20:	00 00       	nop
+								alarm_1_settings_menu = alarm_1_minute_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+						while(alarm_1_settings_menu==alarm_1_minute_highlighted){
+ b22:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ b26:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <alarm_1_minute_highlighted>
+ b2a:	98 17       	cp	r25, r24
+ b2c:	91 f2       	breq	.-92     	; 0xad2 <main+0x3d2>
+							else{
+								alarm_1_settings_menu = alarm_1_set_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+ b2e:	56 db       	rcall	.-2388   	; 0x1dc <clear_lcd>
+						while(alarm_1_settings_menu==alarm_1_set_highlighted && menu_selected==alarm_1_menu){
+ b30:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ b34:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <alarm_1_set_highlighted>
+ b38:	98 13       	cpse	r25, r24
+ b3a:	43 c0       	rjmp	.+134    	; 0xbc2 <main+0x4c2>
+ b3c:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ b40:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <alarm_1_menu>
+ b44:	98 13       	cpse	r25, r24
+ b46:	3d c0       	rjmp	.+122    	; 0xbc2 <main+0x4c2>
+							display_alarm_1_time();
+ b48:	94 dc       	rcall	.-1752   	; 0x472 <display_alarm_1_time>
+							lcd_gotoxy(7,2);
+ b4a:	62 e0       	ldi	r22, 0x02	; 2
+ b4c:	87 e0       	ldi	r24, 0x07	; 7
+ b4e:	0d db       	rcall	.-2534   	; 0x16a <lcd_gotoxy>
+							lcd_print("^^");
+ b50:	8c ec       	ldi	r24, 0xCC	; 204
+ b52:	90 e0       	ldi	r25, 0x00	; 0
+ b54:	2c db       	rcall	.-2472   	; 0x1ae <lcd_print>
+							while(PIND==0b00000011);
+ b56:	80 b3       	in	r24, 0x10	; 16
+ b58:	83 30       	cpi	r24, 0x03	; 3
+ b5a:	e9 f3       	breq	.-6      	; 0xb56 <main+0x456>
+							if((PIND & (1<<PIND1))==0){
+ b5c:	81 99       	sbic	0x10, 1	; 16
+ b5e:	18 c0       	rjmp	.+48     	; 0xb90 <main+0x490>
+								menu_selected = main_menu_selected;
+ b60:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ b64:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+								status_of_alarm_1 = active;
+ b68:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <active>
+ b6c:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <status_of_alarm_1>
+								//alarm_1_change = 1;
+								previous_alarm_1_hour_counter_counter = current_alarm_1_hour_counter;
+ b70:	80 91 1b 01 	lds	r24, 0x011B	; 0x80011b <current_alarm_1_hour_counter>
+ b74:	80 93 1c 01 	sts	0x011C, r24	; 0x80011c <previous_alarm_1_hour_counter_counter>
+								previous_alarm_1_minute_counter = current_alarm_1_minute_counter;
+ b78:	80 91 19 01 	lds	r24, 0x0119	; 0x800119 <current_alarm_1_minute_counter>
+ b7c:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <previous_alarm_1_minute_counter>
+								clear_lcd();
+ b80:	2d db       	rcall	.-2470   	; 0x1dc <clear_lcd>
+								lcd_gotoxy(4,1);
+ b82:	61 e0       	ldi	r22, 0x01	; 1
+ b84:	84 e0       	ldi	r24, 0x04	; 4
+ b86:	f1 da       	rcall	.-2590   	; 0x16a <lcd_gotoxy>
+								lcd_print("Alarm 1 Set");
+ b88:	87 ed       	ldi	r24, 0xD7	; 215
+ b8a:	90 e0       	ldi	r25, 0x00	; 0
+ b8c:	10 db       	rcall	.-2528   	; 0x1ae <lcd_print>
+ b8e:	04 c0       	rjmp	.+8      	; 0xb98 <main+0x498>
+							}
+							else{
+								alarm_1_settings_menu = alarm_1_off_highlighted;
+ b90:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <alarm_1_off_highlighted>
+ b94:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <alarm_1_settings_menu>
+ b98:	df ef       	ldi	r29, 0xFF	; 255
+ b9a:	22 e5       	ldi	r18, 0x52	; 82
+ b9c:	87 e0       	ldi	r24, 0x07	; 7
+ b9e:	d1 50       	subi	r29, 0x01	; 1
+ ba0:	20 40       	sbci	r18, 0x00	; 0
+ ba2:	80 40       	sbci	r24, 0x00	; 0
+ ba4:	e1 f7       	brne	.-8      	; 0xb9e <main+0x49e>
+ ba6:	00 c0       	rjmp	.+0      	; 0xba8 <main+0x4a8>
+ ba8:	00 00       	nop
+								alarm_1_settings_menu = alarm_1_set_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+						while(alarm_1_settings_menu==alarm_1_set_highlighted && menu_selected==alarm_1_menu){
+ baa:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ bae:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <alarm_1_set_highlighted>
+ bb2:	98 13       	cpse	r25, r24
+ bb4:	06 c0       	rjmp	.+12     	; 0xbc2 <main+0x4c2>
+ bb6:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ bba:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <alarm_1_menu>
+ bbe:	98 17       	cp	r25, r24
+ bc0:	19 f2       	breq	.-122    	; 0xb48 <main+0x448>
+							else{
+								alarm_1_settings_menu = alarm_1_off_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+ bc2:	0c db       	rcall	.-2536   	; 0x1dc <clear_lcd>
+						while(alarm_1_settings_menu==alarm_1_off_highlighted && menu_selected==alarm_1_menu){
+ bc4:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ bc8:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <alarm_1_off_highlighted>
+ bcc:	98 13       	cpse	r25, r24
+ bce:	3b c0       	rjmp	.+118    	; 0xc46 <main+0x546>
+ bd0:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ bd4:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <alarm_1_menu>
+ bd8:	98 13       	cpse	r25, r24
+ bda:	35 c0       	rjmp	.+106    	; 0xc46 <main+0x546>
+							display_alarm_1_time();
+ bdc:	4a dc       	rcall	.-1900   	; 0x472 <display_alarm_1_time>
+							lcd_gotoxy(14,2);
+ bde:	62 e0       	ldi	r22, 0x02	; 2
+ be0:	8e e0       	ldi	r24, 0x0E	; 14
+ be2:	c3 da       	rcall	.-2682   	; 0x16a <lcd_gotoxy>
+							lcd_print("^^");
+ be4:	8c ec       	ldi	r24, 0xCC	; 204
+ be6:	90 e0       	ldi	r25, 0x00	; 0
+ be8:	e2 da       	rcall	.-2620   	; 0x1ae <lcd_print>
+							while(PIND==0b00000011);
+ bea:	80 b3       	in	r24, 0x10	; 16
+ bec:	83 30       	cpi	r24, 0x03	; 3
+ bee:	e9 f3       	breq	.-6      	; 0xbea <main+0x4ea>
+							if((PIND & (1<<PIND1))==0){
+ bf0:	81 99       	sbic	0x10, 1	; 16
+ bf2:	10 c0       	rjmp	.+32     	; 0xc14 <main+0x514>
+								menu_selected = main_menu_selected;
+ bf4:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ bf8:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+								//alarm_1_change = 0;
+								status_of_alarm_1 = deactive;
+ bfc:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ c00:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <status_of_alarm_1>
+								clear_lcd();
+ c04:	eb da       	rcall	.-2602   	; 0x1dc <clear_lcd>
+								lcd_gotoxy(4,1);
+ c06:	61 e0       	ldi	r22, 0x01	; 1
+ c08:	84 e0       	ldi	r24, 0x04	; 4
+ c0a:	af da       	rcall	.-2722   	; 0x16a <lcd_gotoxy>
+								lcd_print("Alarm 1 Off");
+ c0c:	83 ee       	ldi	r24, 0xE3	; 227
+ c0e:	90 e0       	ldi	r25, 0x00	; 0
+ c10:	ce da       	rcall	.-2660   	; 0x1ae <lcd_print>
+ c12:	04 c0       	rjmp	.+8      	; 0xc1c <main+0x51c>
+							}
+							else{
+								alarm_1_settings_menu = alarm_1_hour_highlighted;
+ c14:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <alarm_1_hour_highlighted>
+ c18:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <alarm_1_settings_menu>
+ c1c:	9f ef       	ldi	r25, 0xFF	; 255
+ c1e:	c2 e5       	ldi	r28, 0x52	; 82
+ c20:	d7 e0       	ldi	r29, 0x07	; 7
+ c22:	91 50       	subi	r25, 0x01	; 1
+ c24:	c0 40       	sbci	r28, 0x00	; 0
+ c26:	d0 40       	sbci	r29, 0x00	; 0
+ c28:	e1 f7       	brne	.-8      	; 0xc22 <main+0x522>
+ c2a:	00 c0       	rjmp	.+0      	; 0xc2c <main+0x52c>
+ c2c:	00 00       	nop
+								alarm_1_settings_menu = alarm_1_off_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+						while(alarm_1_settings_menu==alarm_1_off_highlighted && menu_selected==alarm_1_menu){
+ c2e:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ c32:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <alarm_1_off_highlighted>
+ c36:	98 13       	cpse	r25, r24
+ c38:	06 c0       	rjmp	.+12     	; 0xc46 <main+0x546>
+ c3a:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ c3e:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <alarm_1_menu>
+ c42:	98 17       	cp	r25, r24
+ c44:	59 f2       	breq	.-106    	; 0xbdc <main+0x4dc>
+							else{
+								alarm_1_settings_menu = alarm_1_hour_highlighted;
+							}
+							_delay_ms(300);
+						}
+						clear_lcd();
+ c46:	ca da       	rcall	.-2668   	; 0x1dc <clear_lcd>
+				if((PIND & (1<<PIND1))==0){
+					_delay_ms(300);
+					clear_lcd();
+					menu_selected = alarm_1_menu;
+					alarm_1_settings_menu = alarm_1_hour_highlighted;
+					while(menu_selected==alarm_1_menu){
+ c48:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ c4c:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <alarm_1_menu>
+ c50:	98 13       	cpse	r25, r24
+ c52:	37 c1       	rjmp	.+622    	; 0xec2 <main+0x7c2>
+						while(alarm_1_settings_menu==alarm_1_hour_highlighted){
+ c54:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <alarm_1_settings_menu>
+ c58:	80 91 1f 01 	lds	r24, 0x011F	; 0x80011f <alarm_1_hour_highlighted>
+ c5c:	98 17       	cp	r25, r24
+ c5e:	09 f4       	brne	.+2      	; 0xc62 <main+0x562>
+ c60:	03 cf       	rjmp	.-506    	; 0xa68 <main+0x368>
+ c62:	30 cf       	rjmp	.-416    	; 0xac4 <main+0x3c4>
+						}
+						clear_lcd();
+					}
+				}
+				//////////////////////////////////////////////////////////////////////////
+				else if((PIND & (1<<PIND0))==0){
+ c64:	80 99       	sbic	0x10, 0	; 16
+ c66:	2d c1       	rjmp	.+602    	; 0xec2 <main+0x7c2>
+					clear_lcd();
+ c68:	b9 da       	rcall	.-2702   	; 0x1dc <clear_lcd>
+					lcd_gotoxy(1,1);
+ c6a:	61 e0       	ldi	r22, 0x01	; 1
+ c6c:	81 e0       	ldi	r24, 0x01	; 1
+ c6e:	7d da       	rcall	.-2822   	; 0x16a <lcd_gotoxy>
+					lcd_print("Click to update");
+ c70:	8c eb       	ldi	r24, 0xBC	; 188
+ c72:	90 e0       	ldi	r25, 0x00	; 0
+ c74:	9c da       	rcall	.-2760   	; 0x1ae <lcd_print>
+					lcd_gotoxy(1,2);
+ c76:	62 e0       	ldi	r22, 0x02	; 2
+ c78:	81 e0       	ldi	r24, 0x01	; 1
+ c7a:	77 da       	rcall	.-2834   	; 0x16a <lcd_gotoxy>
+					lcd_print("Alarm 2");
+ c7c:	8f ee       	ldi	r24, 0xEF	; 239
+ c7e:	90 e0       	ldi	r25, 0x00	; 0
+ c80:	96 da       	rcall	.-2772   	; 0x1ae <lcd_print>
+ c82:	2f ef       	ldi	r18, 0xFF	; 255
+ c84:	82 e5       	ldi	r24, 0x52	; 82
+ c86:	97 e0       	ldi	r25, 0x07	; 7
+ c88:	21 50       	subi	r18, 0x01	; 1
+ c8a:	80 40       	sbci	r24, 0x00	; 0
+ c8c:	90 40       	sbci	r25, 0x00	; 0
+ c8e:	e1 f7       	brne	.-8      	; 0xc88 <main+0x588>
+ c90:	00 c0       	rjmp	.+0      	; 0xc92 <main+0x592>
+ c92:	00 00       	nop
+					_delay_ms(300);
+					while(PIND==0b00000011);
+ c94:	80 b3       	in	r24, 0x10	; 16
+ c96:	83 30       	cpi	r24, 0x03	; 3
+ c98:	e9 f3       	breq	.-6      	; 0xc94 <main+0x594>
+					
+					if((PIND & (1<<PIND1))==0){
+ c9a:	81 99       	sbic	0x10, 1	; 16
+ c9c:	12 c1       	rjmp	.+548    	; 0xec2 <main+0x7c2>
+ c9e:	cf ef       	ldi	r28, 0xFF	; 255
+ ca0:	d2 e5       	ldi	r29, 0x52	; 82
+ ca2:	27 e0       	ldi	r18, 0x07	; 7
+ ca4:	c1 50       	subi	r28, 0x01	; 1
+ ca6:	d0 40       	sbci	r29, 0x00	; 0
+ ca8:	20 40       	sbci	r18, 0x00	; 0
+ caa:	e1 f7       	brne	.-8      	; 0xca4 <main+0x5a4>
+ cac:	00 c0       	rjmp	.+0      	; 0xcae <main+0x5ae>
+ cae:	00 00       	nop
+						_delay_ms(300);
+						clear_lcd();
+ cb0:	95 da       	rcall	.-2774   	; 0x1dc <clear_lcd>
+						menu_selected = alarm_2_menu;
+ cb2:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <alarm_2_menu>
+ cb6:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+						alarm_2_settings_menu = alarm_2_hour_highlighted;
+ cba:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <alarm_2_hour_highlighted>
+ cbe:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <alarm_2_settings_menu>
+ cc2:	f6 c0       	rjmp	.+492    	; 0xeb0 <main+0x7b0>
+						while(menu_selected==alarm_2_menu){
+							while(alarm_2_settings_menu==alarm_2_hour_highlighted){
+								display_alarm_2_time();
+ cc4:	18 dc       	rcall	.-2000   	; 0x4f6 <display_alarm_2_time>
+								lcd_gotoxy(1,2);
+ cc6:	62 e0       	ldi	r22, 0x02	; 2
+ cc8:	81 e0       	ldi	r24, 0x01	; 1
+ cca:	4f da       	rcall	.-2914   	; 0x16a <lcd_gotoxy>
+								lcd_print("^^");
+ ccc:	8c ec       	ldi	r24, 0xCC	; 204
+ cce:	90 e0       	ldi	r25, 0x00	; 0
+ cd0:	6e da       	rcall	.-2852   	; 0x1ae <lcd_print>
+								while(PIND==0b00000011);
+ cd2:	80 b3       	in	r24, 0x10	; 16
+ cd4:	83 30       	cpi	r24, 0x03	; 3
+ cd6:	e9 f3       	breq	.-6      	; 0xcd2 <main+0x5d2>
+								if((PIND & (1<<PIND1))==0){
+ cd8:	81 99       	sbic	0x10, 1	; 16
+ cda:	0f c0       	rjmp	.+30     	; 0xcfa <main+0x5fa>
+									if(alarm_2_hour_counter==23){
+ cdc:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <alarm_2_hour_counter>
+ ce0:	87 31       	cpi	r24, 0x17	; 23
+ ce2:	19 f4       	brne	.+6      	; 0xcea <main+0x5ea>
+										alarm_2_hour_counter = 0;
+ ce4:	10 92 2c 01 	sts	0x012C, r1	; 0x80012c <alarm_2_hour_counter>
+ ce8:	03 c0       	rjmp	.+6      	; 0xcf0 <main+0x5f0>
+									}
+									else{
+										alarm_2_hour_counter++;
+ cea:	8f 5f       	subi	r24, 0xFF	; 255
+ cec:	80 93 2c 01 	sts	0x012C, r24	; 0x80012c <alarm_2_hour_counter>
+									}
+									current_alarm_2_hour_counter = alarm_2_hour_counter;
+ cf0:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <alarm_2_hour_counter>
+ cf4:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <current_alarm_2_hour_counter>
+ cf8:	04 c0       	rjmp	.+8      	; 0xd02 <main+0x602>
+								}
+								else{
+									alarm_2_settings_menu = alarm_2_minute_highlighted;
+ cfa:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <alarm_2_minute_highlighted>
+ cfe:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <alarm_2_settings_menu>
+ d02:	8f ef       	ldi	r24, 0xFF	; 255
+ d04:	92 e5       	ldi	r25, 0x52	; 82
+ d06:	c7 e0       	ldi	r28, 0x07	; 7
+ d08:	81 50       	subi	r24, 0x01	; 1
+ d0a:	90 40       	sbci	r25, 0x00	; 0
+ d0c:	c0 40       	sbci	r28, 0x00	; 0
+ d0e:	e1 f7       	brne	.-8      	; 0xd08 <main+0x608>
+ d10:	00 c0       	rjmp	.+0      	; 0xd12 <main+0x612>
+ d12:	00 00       	nop
+						_delay_ms(300);
+						clear_lcd();
+						menu_selected = alarm_2_menu;
+						alarm_2_settings_menu = alarm_2_hour_highlighted;
+						while(menu_selected==alarm_2_menu){
+							while(alarm_2_settings_menu==alarm_2_hour_highlighted){
+ d14:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ d18:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <alarm_2_hour_highlighted>
+ d1c:	98 17       	cp	r25, r24
+ d1e:	91 f2       	breq	.-92     	; 0xcc4 <main+0x5c4>
+								else{
+									alarm_2_settings_menu = alarm_2_minute_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+ d20:	5d da       	rcall	.-2886   	; 0x1dc <clear_lcd>
+							while(alarm_2_settings_menu==alarm_2_minute_highlighted){
+ d22:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ d26:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <alarm_2_minute_highlighted>
+ d2a:	98 13       	cpse	r25, r24
+ d2c:	2e c0       	rjmp	.+92     	; 0xd8a <main+0x68a>
+								display_alarm_2_time();
+ d2e:	e3 db       	rcall	.-2106   	; 0x4f6 <display_alarm_2_time>
+								lcd_gotoxy(4,2);
+ d30:	62 e0       	ldi	r22, 0x02	; 2
+ d32:	84 e0       	ldi	r24, 0x04	; 4
+ d34:	1a da       	rcall	.-3020   	; 0x16a <lcd_gotoxy>
+								lcd_print("^^");
+ d36:	8c ec       	ldi	r24, 0xCC	; 204
+ d38:	90 e0       	ldi	r25, 0x00	; 0
+ d3a:	39 da       	rcall	.-2958   	; 0x1ae <lcd_print>
+								while(PIND==0b00000011);
+ d3c:	80 b3       	in	r24, 0x10	; 16
+ d3e:	83 30       	cpi	r24, 0x03	; 3
+ d40:	e9 f3       	breq	.-6      	; 0xd3c <main+0x63c>
+								if((PIND & (1<<PIND1))==0){
+ d42:	81 99       	sbic	0x10, 1	; 16
+ d44:	0f c0       	rjmp	.+30     	; 0xd64 <main+0x664>
+									if(alarm_2_minute_counter==59){
+ d46:	80 91 2b 01 	lds	r24, 0x012B	; 0x80012b <alarm_2_minute_counter>
+ d4a:	8b 33       	cpi	r24, 0x3B	; 59
+ d4c:	19 f4       	brne	.+6      	; 0xd54 <main+0x654>
+										alarm_2_minute_counter = 0;
+ d4e:	10 92 2b 01 	sts	0x012B, r1	; 0x80012b <alarm_2_minute_counter>
+ d52:	03 c0       	rjmp	.+6      	; 0xd5a <main+0x65a>
+									}
+									else{
+										alarm_2_minute_counter++;
+ d54:	8f 5f       	subi	r24, 0xFF	; 255
+ d56:	80 93 2b 01 	sts	0x012B, r24	; 0x80012b <alarm_2_minute_counter>
+									}
+									current_alarm_2_minute_counter = alarm_2_minute_counter;
+ d5a:	80 91 2b 01 	lds	r24, 0x012B	; 0x80012b <alarm_2_minute_counter>
+ d5e:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <current_alarm_2_minute_counter>
+ d62:	04 c0       	rjmp	.+8      	; 0xd6c <main+0x66c>
+								}
+								else{
+									alarm_2_settings_menu = alarm_2_set_highlighted;
+ d64:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <alarm_2_set_highlighted>
+ d68:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <alarm_2_settings_menu>
+ d6c:	df ef       	ldi	r29, 0xFF	; 255
+ d6e:	22 e5       	ldi	r18, 0x52	; 82
+ d70:	87 e0       	ldi	r24, 0x07	; 7
+ d72:	d1 50       	subi	r29, 0x01	; 1
+ d74:	20 40       	sbci	r18, 0x00	; 0
+ d76:	80 40       	sbci	r24, 0x00	; 0
+ d78:	e1 f7       	brne	.-8      	; 0xd72 <main+0x672>
+ d7a:	00 c0       	rjmp	.+0      	; 0xd7c <main+0x67c>
+ d7c:	00 00       	nop
+									alarm_2_settings_menu = alarm_2_minute_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+							while(alarm_2_settings_menu==alarm_2_minute_highlighted){
+ d7e:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ d82:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <alarm_2_minute_highlighted>
+ d86:	98 17       	cp	r25, r24
+ d88:	91 f2       	breq	.-92     	; 0xd2e <main+0x62e>
+								else{
+									alarm_2_settings_menu = alarm_2_set_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+ d8a:	28 da       	rcall	.-2992   	; 0x1dc <clear_lcd>
+							while(alarm_2_settings_menu==alarm_2_set_highlighted && menu_selected==alarm_2_menu){
+ d8c:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ d90:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <alarm_2_set_highlighted>
+ d94:	98 13       	cpse	r25, r24
+ d96:	43 c0       	rjmp	.+134    	; 0xe1e <main+0x71e>
+ d98:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ d9c:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <alarm_2_menu>
+ da0:	98 13       	cpse	r25, r24
+ da2:	3d c0       	rjmp	.+122    	; 0xe1e <main+0x71e>
+								display_alarm_2_time();
+ da4:	a8 db       	rcall	.-2224   	; 0x4f6 <display_alarm_2_time>
+								lcd_gotoxy(7,2);
+ da6:	62 e0       	ldi	r22, 0x02	; 2
+ da8:	87 e0       	ldi	r24, 0x07	; 7
+ daa:	df d9       	rcall	.-3138   	; 0x16a <lcd_gotoxy>
+								lcd_print("^^");
+ dac:	8c ec       	ldi	r24, 0xCC	; 204
+ dae:	90 e0       	ldi	r25, 0x00	; 0
+ db0:	fe d9       	rcall	.-3076   	; 0x1ae <lcd_print>
+								while(PIND==0b00000011);
+ db2:	80 b3       	in	r24, 0x10	; 16
+ db4:	83 30       	cpi	r24, 0x03	; 3
+ db6:	e9 f3       	breq	.-6      	; 0xdb2 <main+0x6b2>
+								if((PIND & (1<<PIND1))==0){
+ db8:	81 99       	sbic	0x10, 1	; 16
+ dba:	18 c0       	rjmp	.+48     	; 0xdec <main+0x6ec>
+									menu_selected = main_menu_selected;
+ dbc:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ dc0:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+									//alarm_2_change = 1;
+									status_of_alarm_2 = active;
+ dc4:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <active>
+ dc8:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <status_of_alarm_2>
+									previous_alarm_2_hour_counter_counter = current_alarm_2_hour_counter;
+ dcc:	80 91 17 01 	lds	r24, 0x0117	; 0x800117 <current_alarm_2_hour_counter>
+ dd0:	80 93 18 01 	sts	0x0118, r24	; 0x800118 <previous_alarm_2_hour_counter_counter>
+									previous_alarm_2_minute_counter = current_alarm_2_minute_counter;
+ dd4:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <current_alarm_2_minute_counter>
+ dd8:	80 93 16 01 	sts	0x0116, r24	; 0x800116 <previous_alarm_2_minute_counter>
+									clear_lcd();
+ ddc:	ff d9       	rcall	.-3074   	; 0x1dc <clear_lcd>
+									lcd_gotoxy(4,1);
+ dde:	61 e0       	ldi	r22, 0x01	; 1
+ de0:	84 e0       	ldi	r24, 0x04	; 4
+ de2:	c3 d9       	rcall	.-3194   	; 0x16a <lcd_gotoxy>
+									lcd_print("Alarm 2 Set");
+ de4:	87 ef       	ldi	r24, 0xF7	; 247
+ de6:	90 e0       	ldi	r25, 0x00	; 0
+ de8:	e2 d9       	rcall	.-3132   	; 0x1ae <lcd_print>
+ dea:	04 c0       	rjmp	.+8      	; 0xdf4 <main+0x6f4>
+								}
+								else{
+									alarm_2_settings_menu = alarm_2_off_highlighted;
+ dec:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <alarm_2_off_highlighted>
+ df0:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <alarm_2_settings_menu>
+ df4:	9f ef       	ldi	r25, 0xFF	; 255
+ df6:	c2 e5       	ldi	r28, 0x52	; 82
+ df8:	d7 e0       	ldi	r29, 0x07	; 7
+ dfa:	91 50       	subi	r25, 0x01	; 1
+ dfc:	c0 40       	sbci	r28, 0x00	; 0
+ dfe:	d0 40       	sbci	r29, 0x00	; 0
+ e00:	e1 f7       	brne	.-8      	; 0xdfa <main+0x6fa>
+ e02:	00 c0       	rjmp	.+0      	; 0xe04 <main+0x704>
+ e04:	00 00       	nop
+									alarm_2_settings_menu = alarm_2_set_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+							while(alarm_2_settings_menu==alarm_2_set_highlighted && menu_selected==alarm_2_menu){
+ e06:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ e0a:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <alarm_2_set_highlighted>
+ e0e:	98 13       	cpse	r25, r24
+ e10:	06 c0       	rjmp	.+12     	; 0xe1e <main+0x71e>
+ e12:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ e16:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <alarm_2_menu>
+ e1a:	98 17       	cp	r25, r24
+ e1c:	19 f2       	breq	.-122    	; 0xda4 <main+0x6a4>
+								else{
+									alarm_2_settings_menu = alarm_2_off_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+ e1e:	de d9       	rcall	.-3140   	; 0x1dc <clear_lcd>
+							while(alarm_2_settings_menu==alarm_2_off_highlighted && menu_selected==alarm_2_menu){
+ e20:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ e24:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <alarm_2_off_highlighted>
+ e28:	98 13       	cpse	r25, r24
+ e2a:	3b c0       	rjmp	.+118    	; 0xea2 <main+0x7a2>
+ e2c:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ e30:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <alarm_2_menu>
+ e34:	98 13       	cpse	r25, r24
+ e36:	35 c0       	rjmp	.+106    	; 0xea2 <main+0x7a2>
+								display_alarm_2_time();
+ e38:	5e db       	rcall	.-2372   	; 0x4f6 <display_alarm_2_time>
+								lcd_gotoxy(14,2);
+ e3a:	62 e0       	ldi	r22, 0x02	; 2
+ e3c:	8e e0       	ldi	r24, 0x0E	; 14
+ e3e:	95 d9       	rcall	.-3286   	; 0x16a <lcd_gotoxy>
+								lcd_print("^^");
+ e40:	8c ec       	ldi	r24, 0xCC	; 204
+ e42:	90 e0       	ldi	r25, 0x00	; 0
+ e44:	b4 d9       	rcall	.-3224   	; 0x1ae <lcd_print>
+								while(PIND==0b00000011);
+ e46:	80 b3       	in	r24, 0x10	; 16
+ e48:	83 30       	cpi	r24, 0x03	; 3
+ e4a:	e9 f3       	breq	.-6      	; 0xe46 <main+0x746>
+								if((PIND & (1<<PIND1))==0){
+ e4c:	81 99       	sbic	0x10, 1	; 16
+ e4e:	10 c0       	rjmp	.+32     	; 0xe70 <main+0x770>
+									menu_selected = main_menu_selected;
+ e50:	80 91 23 01 	lds	r24, 0x0123	; 0x800123 <main_menu_selected>
+ e54:	80 93 24 01 	sts	0x0124, r24	; 0x800124 <menu_selected>
+									//alarm_2_change = 0;
+									status_of_alarm_2 = deactive;
+ e58:	80 91 25 01 	lds	r24, 0x0125	; 0x800125 <deactive>
+ e5c:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <status_of_alarm_2>
+									clear_lcd();
+ e60:	bd d9       	rcall	.-3206   	; 0x1dc <clear_lcd>
+									lcd_gotoxy(4,1);
+ e62:	61 e0       	ldi	r22, 0x01	; 1
+ e64:	84 e0       	ldi	r24, 0x04	; 4
+ e66:	81 d9       	rcall	.-3326   	; 0x16a <lcd_gotoxy>
+									lcd_print("Alarm 2 Off");
+ e68:	83 e0       	ldi	r24, 0x03	; 3
+ e6a:	91 e0       	ldi	r25, 0x01	; 1
+ e6c:	a0 d9       	rcall	.-3264   	; 0x1ae <lcd_print>
+ e6e:	04 c0       	rjmp	.+8      	; 0xe78 <main+0x778>
+								}
+								else{
+									alarm_2_settings_menu = alarm_2_hour_highlighted;
+ e70:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <alarm_2_hour_highlighted>
+ e74:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <alarm_2_settings_menu>
+ e78:	2f ef       	ldi	r18, 0xFF	; 255
+ e7a:	82 e5       	ldi	r24, 0x52	; 82
+ e7c:	97 e0       	ldi	r25, 0x07	; 7
+ e7e:	21 50       	subi	r18, 0x01	; 1
+ e80:	80 40       	sbci	r24, 0x00	; 0
+ e82:	90 40       	sbci	r25, 0x00	; 0
+ e84:	e1 f7       	brne	.-8      	; 0xe7e <main+0x77e>
+ e86:	00 c0       	rjmp	.+0      	; 0xe88 <main+0x788>
+ e88:	00 00       	nop
+									alarm_2_settings_menu = alarm_2_off_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+							while(alarm_2_settings_menu==alarm_2_off_highlighted && menu_selected==alarm_2_menu){
+ e8a:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ e8e:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <alarm_2_off_highlighted>
+ e92:	98 13       	cpse	r25, r24
+ e94:	06 c0       	rjmp	.+12     	; 0xea2 <main+0x7a2>
+ e96:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ e9a:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <alarm_2_menu>
+ e9e:	98 17       	cp	r25, r24
+ ea0:	59 f2       	breq	.-106    	; 0xe38 <main+0x738>
+								else{
+									alarm_2_settings_menu = alarm_2_hour_highlighted;
+								}
+								_delay_ms(300);
+							}
+							clear_lcd();
+ ea2:	9c d9       	rcall	.-3272   	; 0x1dc <clear_lcd>
+					if((PIND & (1<<PIND1))==0){
+						_delay_ms(300);
+						clear_lcd();
+						menu_selected = alarm_2_menu;
+						alarm_2_settings_menu = alarm_2_hour_highlighted;
+						while(menu_selected==alarm_2_menu){
+ ea4:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <menu_selected>
+ ea8:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <alarm_2_menu>
+ eac:	98 13       	cpse	r25, r24
+ eae:	09 c0       	rjmp	.+18     	; 0xec2 <main+0x7c2>
+							while(alarm_2_settings_menu==alarm_2_hour_highlighted){
+ eb0:	90 91 1e 01 	lds	r25, 0x011E	; 0x80011e <alarm_2_settings_menu>
+ eb4:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <alarm_2_hour_highlighted>
+ eb8:	98 17       	cp	r25, r24
+ eba:	09 f4       	brne	.+2      	; 0xebe <main+0x7be>
+ ebc:	03 cf       	rjmp	.-506    	; 0xcc4 <main+0x5c4>
+ ebe:	30 cf       	rjmp	.-416    	; 0xd20 <main+0x620>
+			
+		//	_delay_ms(300);
+		//	clear_lcd();
+		}
+		else{
+			beeping_alarm();
+ ec0:	5c db       	rcall	.-2376   	; 0x57a <beeping_alarm>
+ ec2:	cf ef       	ldi	r28, 0xFF	; 255
+ ec4:	d2 e5       	ldi	r29, 0x52	; 82
+ ec6:	27 e0       	ldi	r18, 0x07	; 7
+ ec8:	c1 50       	subi	r28, 0x01	; 1
+ eca:	d0 40       	sbci	r29, 0x00	; 0
+ ecc:	20 40       	sbci	r18, 0x00	; 0
+ ece:	e1 f7       	brne	.-8      	; 0xec8 <main+0x7c8>
+ ed0:	00 c0       	rjmp	.+0      	; 0xed2 <main+0x7d2>
+ ed2:	00 00       	nop
+				}
+			}
+			*/
+		}
+		_delay_ms(300);
+		clear_lcd();
+ ed4:	83 d9       	rcall	.-3322   	; 0x1dc <clear_lcd>
+		
+	}
+ ed6:	1a cc       	rjmp	.-1996   	; 0x70c <main+0xc>
+
+00000ed8 <__udivmodqi4>:
+ ed8:	99 1b       	sub	r25, r25
+ eda:	79 e0       	ldi	r23, 0x09	; 9
+ edc:	04 c0       	rjmp	.+8      	; 0xee6 <__udivmodqi4_ep>
+
+00000ede <__udivmodqi4_loop>:
+ ede:	99 1f       	adc	r25, r25
+ ee0:	96 17       	cp	r25, r22
+ ee2:	08 f0       	brcs	.+2      	; 0xee6 <__udivmodqi4_ep>
+ ee4:	96 1b       	sub	r25, r22
+
+00000ee6 <__udivmodqi4_ep>:
+ ee6:	88 1f       	adc	r24, r24
+ ee8:	7a 95       	dec	r23
+ eea:	c9 f7       	brne	.-14     	; 0xede <__udivmodqi4_loop>
+ eec:	80 95       	com	r24
+ eee:	08 95       	ret
+
+00000ef0 <_exit>:
+ ef0:	f8 94       	cli
+
+00000ef2 <__stop_program>:
+ ef2:	ff cf       	rjmp	.-2      	; 0xef2 <__stop_program>
